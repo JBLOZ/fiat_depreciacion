@@ -1,0 +1,68 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual environments
+venv/
+ENV/
+env/
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+*.ipynb
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Datos sensibles
+*.key
+.env
+.env.local
+config.ini
+
+# Archivos temporales
+*.tmp
+*.temp
+*.log
+
+# Archivos grandes de datos (opcional, según necesites subirlos o no)
+# datos/raw/*.csv
+# datos/procesados/*.csv
+
+# Pentaho
+*.log
+*.xml.backup
+
+# Documentación temporal
+~$*.docx
+~$*.xlsx
