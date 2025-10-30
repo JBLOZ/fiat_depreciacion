@@ -8,9 +8,9 @@
 
 Almacén de datos integrado que analiza la erosión del poder adquisitivo de las familias españolas 
 
-vinculándolo con depreciación del euro, inflación (HICP/IPC), salarios nominales y reales, 
+vinculándolo con depreciación de las monedas fiat (el euro en este caso), a partir de datos como la inflación (HICP/IPC), 
 
-evolución de índices bursátiles (IBEX-35), tipos de cambio EUR/USD y precio del oro.
+salarios nominales y reales, evolución de índices bursátiles (IBEX-35), tipos de cambio EUR/USD y precio del oro.
 
 
 
