@@ -1,8 +1,8 @@
-\# Macroeconomic Indicators for Spain: Power of Acquisition Analysis (2010-2025)
+# Macroeconomic Indicators for Spain: Power of Acquisition Analysis (2010-2025)
 
 
 
-\## Descripción
+## Descripción
 
 
 
@@ -14,57 +14,57 @@ evolución de índices bursátiles (IBEX-35), tipos de cambio EUR/USD y precio d
 
 
 
-\*\*Preguntas de investigación:\*\*
+**Preguntas de investigación:**
 
-\- P1: ¿Cómo ha evolucionado el poder adquisitivo real en España (2010-2025)?
+- P1: ¿Cómo ha evolucionado el poder adquisitivo real en España (2010-2025)?
 
-\- P2: ¿Qué relación existe entre inflación y salarios reales?
+- P2: ¿Qué relación existe entre inflación y salarios reales?
 
-\- P3: ¿Cómo se correlaciona el oro en EUR con la pérdida de poder adquisitivo?
+- P3: ¿Cómo se correlaciona el oro en EUR con la pérdida de poder adquisitivo?
 
-\- P4: ¿Es el IBEX-35 cobertura efectiva contra inflación?
+- P4: ¿Es el IBEX-35 cobertura efectiva contra inflación?
 
-\- P5: ¿Cuál ha sido el impacto de depreciación del euro?
-
-
-
-\## Estructura del Proyecto
+- P5: ¿Cuál ha sido el impacto de depreciación del euro?
 
 
 
-Ver archivo `docs/ESTRUCTURA\_PROYECTO.md` para detalle completo.
+## Estructura del Proyecto
+
+
+
+Ver archivo `docs/ESTRUCTURA_PROYECTO.md` para detalle completo.
 
 
 
 Directorios principales:
 
-\- `data/` - Datos raw, processed, e intermedios
+- `data/` - Datos raw, processed, e intermedios
 
-\- `etl/` - Pipelines Pentaho + Python
+- `etl/` - Pipelines Pentaho + Python
 
-\- `src/` - Scripts SQL, Python de configuración
+- `src/` - Scripts SQL, Python de configuración
 
-\- `viz/` - Visualizaciones HTML interactivas
+- `viz/` - Visualizaciones HTML interactivas
 
-\- `schemaorg/` - Transformaciones RDF/JSON-LD
+- `schemaorg/` - Transformaciones RDF/JSON-LD
 
-\- `docs/` - Documentación completa
-
-
-
-\## Requisitos y Preparación del Entorno
+- `docs/` - Documentación completa
 
 
 
-\### Requisitos Previos
+## Requisitos y Preparación del Entorno
 
-\- Python 3.9+
 
-\- PostgreSQL 12+
 
-\- Pentaho Data Integration (Community Edition) 9.0+
+### Requisitos Previos
 
-\- Git
+- Python 3.9+
+
+- PostgreSQL 12+
+
+- Pentaho Data Integration (Community Edition) 9.0+
+
+- Git
 
 
 
