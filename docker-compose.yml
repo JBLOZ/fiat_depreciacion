@@ -1,0 +1,13 @@
+services:
+  db:
+    image: mysql:8.0
+    container_name: fiat_mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: fiat_depreciacion_dw
+    ports:
+      - "3306:3306"
+    volumes:
+      
+      - ./sql/backup_completo.sql:/docker-entrypoint-initdb.d/backup_completo.sql
