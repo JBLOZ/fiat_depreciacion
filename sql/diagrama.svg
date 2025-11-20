@@ -1,0 +1,164 @@
+<svg width="1200" height="900" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css?family=Roboto:400,700&amp;display=swap');
+      .table-header { fill: #2c3e50; stroke: #34495e; stroke-width: 1; }
+      .table-body { fill: #ffffff; stroke: #bdc3c7; stroke-width: 1; }
+      .table-title { font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: bold; fill: #ffffff; text-anchor: middle; }
+      .column-text { font-family: 'Roboto', sans-serif; font-size: 11px; fill: #2c3e50; }
+      .pk-text { font-weight: bold; fill: #c0392b; }
+      .fk-text { font-style: italic; fill: #e67e22; }
+      .connector { fill: none; stroke: #7f8c8d; stroke-width: 1.5; }
+      .utility-bg { fill: #f0f3f4; stroke: #bdc3c7; stroke-dasharray: 5,5; }
+      .utility-label { font-family: 'Roboto', sans-serif; font-size: 16px; fill: #7f8c8d; font-weight: bold; }
+    </style>
+    <marker id="crowfoot" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M0,6 L10,6 M5,0 L5,12 M0,0 L10,6 L0,12" fill="none" stroke="#7f8c8d" stroke-width="1"/>
+    </marker>
+    <marker id="one" markerWidth="12" markerHeight="12" refX="0" refY="6" orient="auto">
+      <path d="M6,0 L6,12 M10,0 L10,12" fill="none" stroke="#7f8c8d" stroke-width="1"/>
+    </marker>
+  </defs>
+
+  <rect width="100%" height="100%" fill="#fafafa" />
+
+  <g transform="translate(450, 300)">
+    <rect x="0" y="0" width="240" height="300" class="table-body" />
+    <rect x="0" y="0" width="240" height="30" class="table-header" />
+    <text x="120" y="20" class="table-title">hechos_indicadores_temporales</text>
+    
+    <text x="10" y="50" class="column-text pk-text fk-text">PK,FK tiempo_key</text>
+    <text x="10" y="70" class="column-text pk-text fk-text">PK,FK indicador_key</text>
+    <text x="10" y="90" class="column-text pk-text fk-text">PK,FK geo_key</text>
+    <text x="10" y="110" class="column-text pk-text fk-text">PK,FK unit_key</text>
+    <text x="10" y="130" class="column-text pk-text fk-text">PK,FK fuente_key</text>
+    <line x1="5" y1="140" x2="235" y2="140" stroke="#ecf0f1" />
+    <text x="10" y="160" class="column-text">valor (DECIMAL)</text>
+    <text x="10" y="180" class="column-text">valor_anterior</text>
+    <text x="10" y="200" class="column-text">variacion_absoluta</text>
+    <text x="10" y="220" class="column-text">variacion_pct</text>
+    <text x="10" y="240" class="column-text">calidad_dato</text>
+    <text x="10" y="260" class="column-text">probabilidad_imputacion</text>
+    <text x="10" y="280" class="column-text">ts_actualizacion</text>
+  </g>
+
+  <g transform="translate(450, 20)">
+    <rect x="0" y="0" width="240" height="180" class="table-body" />
+    <rect x="0" y="0" width="240" height="30" class="table-header" />
+    <text x="120" y="20" class="table-title">dim_geografia</text>
+    
+    <text x="10" y="50" class="column-text pk-text">PK geo_key</text>
+    <text x="10" y="70" class="column-text">codigo</text>
+    <text x="10" y="90" class="column-text">nombre</text>
+    <text x="10" y="110" class="column-text">codigo_iso</text>
+    <text x="10" y="130" class="column-text">tipo</text>
+    <text x="10" y="150" class="column-text fk-text">FK geo_padre_key</text>
+    <text x="10" y="170" class="column-text">nivel_jerarquia</text>
+    
+    <path d="M240,145 C280,145 280,50 240,50" fill="none" stroke="#7f8c8d" marker-end="url(#crowfoot)" stroke-dasharray="3,2"/>
+  </g>
+
+  <g transform="translate(50, 280)">
+    <rect x="0" y="0" width="200" height="220" class="table-body" />
+    <rect x="0" y="0" width="200" height="30" class="table-header" />
+    <text x="100" y="20" class="table-title">dim_tiempo</text>
+    
+    <text x="10" y="50" class="column-text pk-text">PK tiempo_key</text>
+    <text x="10" y="70" class="column-text">fecha</text>
+    <text x="10" y="90" class="column-text">anio</text>
+    <text x="10" y="110" class="column-text">mes / nombre_mes</text>
+    <text x="10" y="130" class="column-text">trimestre</text>
+    <text x="10" y="150" class="column-text">semana</text>
+    <text x="10" y="170" class="column-text">es_festivo</text>
+    <text x="10" y="190" class="column-text">anio_mes</text>
+    <text x="10" y="210" class="column-text">periodo_fiscal</text>
+  </g>
+
+  <g transform="translate(800, 280)">
+    <rect x="0" y="0" width="200" height="180" class="table-body" />
+    <rect x="0" y="0" width="200" height="30" class="table-header" />
+    <text x="100" y="20" class="table-title">dim_fuente</text>
+    
+    <text x="10" y="50" class="column-text pk-text">PK fuente_key</text>
+    <text x="10" y="70" class="column-text">codigo</text>
+    <text x="10" y="90" class="column-text">institucion</text>
+    <text x="10" y="110" class="column-text">url_base</text>
+    <text x="10" y="130" class="column-text">pais_origen</text>
+    <text x="10" y="150" class="column-text">frecuencia_actualizacion</text>
+  </g>
+
+  <g transform="translate(250, 680)">
+    <rect x="0" y="0" width="220" height="200" class="table-body" />
+    <rect x="0" y="0" width="220" height="30" class="table-header" />
+    <text x="110" y="20" class="table-title">dim_indicador</text>
+    
+    <text x="10" y="50" class="column-text pk-text">PK indicador_key</text>
+    <text x="10" y="70" class="column-text">codigo</text>
+    <text x="10" y="90" class="column-text">nombre</text>
+    <text x="10" y="110" class="column-text">formula_calculo</text>
+    <text x="10" y="130" class="column-text">categoria</text>
+    <text x="10" y="150" class="column-text">subcategoria</text>
+    <text x="10" y="170" class="column-text">es_agregable</text>
+    <text x="10" y="190" class="column-text">unidad_base</text>
+  </g>
+
+  <g transform="translate(650, 680)">
+    <rect x="0" y="0" width="200" height="140" class="table-body" />
+    <rect x="0" y="0" width="200" height="30" class="table-header" />
+    <text x="100" y="20" class="table-title">dim_unidad</text>
+    
+    <text x="10" y="50" class="column-text pk-text">PK unit_key</text>
+    <text x="10" y="70" class="column-text">simbolo</text>
+    <text x="10" y="90" class="column-text">descripcion</text>
+    <text x="10" y="110" class="column-text">tipo_medida</text>
+    <text x="10" y="130" class="column-text">factor_conversion</text>
+  </g>
+
+  <g transform="translate(950, 20)">
+    <rect x="-10" y="-10" width="240" height="600" class="utility-bg" />
+    <text x="110" y="-20" class="utility-label" text-anchor="middle">Log / Metadata / QA</text>
+
+    <g transform="translate(10, 10)">
+      <rect x="0" y="0" width="200" height="160" class="table-body" />
+      <rect x="0" y="0" width="200" height="30" class="table-header" />
+      <text x="100" y="20" class="table-title">etl_logs</text>
+      <text x="10" y="50" class="column-text pk-text">PK log_id</text>
+      <text x="10" y="70" class="column-text">proceso</text>
+      <text x="10" y="90" class="column-text">estado</text>
+      <text x="10" y="110" class="column-text">registros_procesados</text>
+      <text x="10" y="130" class="column-text">mensaje_error</text>
+    </g>
+
+    <g transform="translate(10, 200)">
+      <rect x="0" y="0" width="200" height="160" class="table-body" />
+      <rect x="0" y="0" width="200" height="30" class="table-header" />
+      <text x="100" y="20" class="table-title">validacion_calidad</text>
+      <text x="10" y="50" class="column-text pk-text">PK validacion_id</text>
+      <text x="10" y="70" class="column-text">tabla_validada</text>
+      <text x="10" y="90" class="column-text">regla_validacion</text>
+      <text x="10" y="110" class="column-text">resultado</text>
+      <text x="10" y="130" class="column-text">registros_afectados</text>
+    </g>
+
+    <g transform="translate(10, 390)">
+      <rect x="0" y="0" width="200" height="100" class="table-body" />
+      <rect x="0" y="0" width="200" height="30" class="table-header" />
+      <text x="100" y="20" class="table-title">metadata_dw</text>
+      <text x="10" y="50" class="column-text pk-text">PK clave</text>
+      <text x="10" y="70" class="column-text">valor</text>
+      <text x="10" y="90" class="column-text">tipo_dato</text>
+    </g>
+  </g>
+
+  <path d="M570,200 L570,300" class="connector" marker-end="url(#crowfoot)" marker-start="url(#one)"/>
+
+  <path d="M250,400 L450,400" class="connector" marker-end="url(#crowfoot)" marker-start="url(#one)"/>
+
+  <path d="M800,400 L690,400" class="connector" marker-end="url(#crowfoot)" marker-start="url(#one)"/>
+
+  <path d="M400,680 L400,550 L480,550 L480,600" class="connector" marker-start="url(#one)" /> 
+  <line x1="480" y1="600" x2="480" y2="600" stroke="none" marker-end="url(#crowfoot)" /> <path d="M400,680 L400,640 L480,640 L480,600" stroke="#7f8c8d" fill="none" stroke-width="1.5" />
+
+  <path d="M700,680 L700,640 L600,640 L600,600" class="connector" marker-end="url(#crowfoot)" marker-start="url(#one)"/>
+
+</svg>

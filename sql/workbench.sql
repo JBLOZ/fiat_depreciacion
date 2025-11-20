@@ -225,7 +225,7 @@ CREATE TABLE IF NOT EXISTS `etl_logs` (
   `registros_rechazados` INT NULL DEFAULT '0',
   `mensaje_error` TEXT NULL DEFAULT NULL,
   `archivo_origen` VARCHAR(500) NULL DEFAULT NULL,
-  `usuario_ejecucion` VARCHAR(50) NULL DEFAULT user(),
+  `usuario_ejecucion` VARCHAR(50) NULL DEFAULT (user()),
   PRIMARY KEY (`log_id`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
@@ -261,7 +261,7 @@ CREATE TABLE IF NOT EXISTS `hechos_indicadores_temporales` (
   `metodo_imputacion` VARCHAR(100) NULL DEFAULT NULL,
   `ts_actualizacion` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `ts_carga` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
-  `usuario_carga` VARCHAR(50) NULL DEFAULT user(),
+  `usuario_carga` VARCHAR(50) NULL DEFAULT (user()),
   PRIMARY KEY (`tiempo_key`, `indicador_key`, `geo_key`, `unit_key`, `fuente_key`),
   CONSTRAINT `fk_fuente`
     FOREIGN KEY (`fuente_key`)
