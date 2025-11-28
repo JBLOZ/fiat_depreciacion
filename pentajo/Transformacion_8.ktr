@@ -430,7 +430,7 @@
     <created_date>2025/11/20 19:42:12.389</created_date>
     <modified_user>-</modified_user>
     <modified_date>2025/11/20 19:42:12.389</modified_date>
-    <key_for_session_key/>
+    <key_for_session_key>H4sIAAAAAAAA/wMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
@@ -463,7 +463,27 @@
     </hop>
     <hop>
       <from>Memory group by</from>
-      <to>Text file output (Legacy)</to>
+      <to>Add constants</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Add constants</from>
+      <to>Formula</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Formula</from>
+      <to>Selecciona/Renombra valores 2</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Selecciona/Renombra valores 2</from>
+      <to>If field value is null</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>If field value is null</from>
+      <to>Text file output (Legacy) 2</to>
       <enabled>Y</enabled>
     </hop>
   </order>
@@ -658,6 +678,48 @@
     </GUI>
   </step>
   <step>
+    <name>Memory group by</name>
+    <type>MemoryGroupBy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <give_back_row>N</give_back_row>
+    <group>
+      <field>
+        <name>Ano</name>
+      </field>
+      <field>
+        <name>Decil_Rango</name>
+      </field>
+    </group>
+    <fields>
+      <field>
+        <aggregate>Salario_Mensual_EUR</aggregate>
+        <subject>Salario_Mensual_EUR</subject>
+        <type>AVERAGE</type>
+        <valuefield/>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>592</xloc>
+      <yloc>112</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
     <name>Replace in string</name>
     <type>ReplaceString</type>
     <description/>
@@ -736,7 +798,7 @@
       <meta>
         <name>Total</name>
         <rename>Salario_Mensual_EUR</rename>
-        <type>Number</type>
+        <type>String</type>
         <length>-2</length>
         <precision>-2</precision>
         <conversion_mask/>
@@ -766,49 +828,7 @@
     </GUI>
   </step>
   <step>
-    <name>Memory group by</name>
-    <type>MemoryGroupBy</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <give_back_row>N</give_back_row>
-    <group>
-      <field>
-        <name>Ano</name>
-      </field>
-      <field>
-        <name>Decil_Rango</name>
-      </field>
-    </group>
-    <fields>
-      <field>
-        <aggregate>Salario_Mensual_EUR</aggregate>
-        <subject>Salario_Mensual_EUR</subject>
-        <type>AVERAGE</type>
-        <valuefield/>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>592</xloc>
-      <yloc>96</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Text file output (Legacy)</name>
+    <name>Text file output (Legacy) 2</name>
     <type>TextFileOutputLegacy</type>
     <description/>
     <distribute>Y</distribute>
@@ -832,10 +852,10 @@
     <fileNameField/>
     <create_parent_folder>Y</create_parent_folder>
     <file>
-      <name>file</name>
+      <name>C:\Users\alema\Documents\adquisicion-datos\csvs\transformacion8</name>
       <servlet_output>N</servlet_output>
       <do_not_open_new_file_init>N</do_not_open_new_file_init>
-      <extention>txt</extention>
+      <extention>csv</extention>
       <append>N</append>
       <split>N</split>
       <haspartno>N</haspartno>
@@ -851,16 +871,16 @@
     </file>
     <fields>
       <field>
-        <name>Ano</name>
-        <type>Integer</type>
-        <format>#</format>
-        <currency>EUR</currency>
-        <decimal>.</decimal>
-        <group>,</group>
+        <name>Fecha</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
         <nullif/>
         <trim_type>none</trim_type>
-        <length>15</length>
-        <precision>0</precision>
+        <length>-1</length>
+        <precision>-1</precision>
       </field>
       <field>
         <name>Decil_Rango</name>
@@ -871,16 +891,16 @@
         <group/>
         <nullif/>
         <trim_type>none</trim_type>
-        <length>6</length>
+        <length>-1</length>
         <precision>-1</precision>
       </field>
       <field>
         <name>Salario_Mensual_EUR</name>
-        <type>Number</type>
-        <format>###,###,###.#</format>
+        <type>String</type>
+        <format>#,###.#</format>
         <currency/>
-        <decimal>,</decimal>
-        <group>.</group>
+        <decimal>.</decimal>
+        <group>,</group>
         <nullif/>
         <trim_type>none</trim_type>
         <length>-1</length>
@@ -896,8 +916,165 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>688</xloc>
-      <yloc>32</yloc>
+      <xloc>960</xloc>
+      <yloc>48</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Add constants</name>
+    <type>Constant</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>sufijo</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>-12-31</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>673</xloc>
+      <yloc>265</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Formula</name>
+    <type>Formula</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <formula>
+      <field_name>Fecha</field_name>
+      <formula_string>[Ano]&amp;[sufijo]</formula_string>
+      <value_type>String</value_type>
+      <value_length>-1</value_length>
+      <value_precision>-1</value_precision>
+      <replace_field/>
+    </formula>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>752</xloc>
+      <yloc>272</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Selecciona/Renombra valores 2</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>N</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <select_unspecified>N</select_unspecified>
+      <meta>
+        <name>Salario_Mensual_EUR</name>
+        <rename>Salario_Mensual_EUR</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>832</xloc>
+      <yloc>208</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>If field value is null</name>
+    <type>IfNull</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <replaceAllByValue/>
+    <replaceAllMask/>
+    <selectFields>Y</selectFields>
+    <selectValuesType>N</selectValuesType>
+    <setEmptyStringAll>N</setEmptyStringAll>
+    <valuetypes>
+      </valuetypes>
+    <fields>
+      <field>
+        <name>Salario_Mensual_EUR</name>
+        <value>\N</value>
+        <mask/>
+        <set_empty_string>N</set_empty_string>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>912</xloc>
+      <yloc>128</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
