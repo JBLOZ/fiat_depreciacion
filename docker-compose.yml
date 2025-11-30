@@ -10,4 +10,4 @@ services:
       - "3306:3306"
     volumes:
       
-      - ./sql/backup_completo.sql:/docker-entrypoint-initdb.d/backup_completo.sql
+      - ./sql/backup_completo.sql:/docker-entrypoint-initdb.d/backup_completo_v2.sql
