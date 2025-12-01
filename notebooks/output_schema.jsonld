@@ -1,0 +1,2482 @@
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/IPC_General_Base2021-2017-12-31",
+    "observationDate": "2017-12-31",
+    "measurementValue": 103.184,
+    "unitText": "Índice",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "IPC_General_Base2021"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Spain"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Salario_Mas_Frecuente-2018-12-31",
+    "observationDate": "2018-12-31",
+    "measurementValue": 16977.6,
+    "unitText": "EUR",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Salario_Mas_Frecuente"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Spain"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Salario_mediano-2018-12-31",
+    "observationDate": "2018-12-31",
+    "measurementValue": 19854.65,
+    "unitText": "EUR",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Salario mediano"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Spain"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/IPC_General_Base2021-2018-12-31",
+    "observationDate": "2018-12-31",
+    "measurementValue": 104.405,
+    "unitText": "Índice",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "IPC_General_Base2021"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Spain"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Salario_Decil_40-50-2019-12-31",
+    "observationDate": "2019-12-31",
+    "measurementValue": 1594.6,
+    "unitText": "EUR",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Salario Decil 40-50"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Spain"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Salario_Decil_50-60-2019-12-31",
+    "observationDate": "2019-12-31",
+    "measurementValue": 1793.75,
+    "unitText": "EUR",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Salario Decil 50-60"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Spain"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Salario_Decil_60-70-2019-12-31",
+    "observationDate": "2019-12-31",
+    "measurementValue": 2058.0,
+    "unitText": "EUR",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Salario Decil 60-70"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Spain"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Salario_Decil_70-80-2019-12-31",
+    "observationDate": "2019-12-31",
+    "measurementValue": 2447.55,
+    "unitText": "EUR",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Salario Decil 70-80"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Spain"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Salario_Decil_80-90-2019-12-31",
+    "observationDate": "2019-12-31",
+    "measurementValue": 3034.9,
+    "unitText": "EUR",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Salario Decil 80-90"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Spain"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Salario_Decil_90-100-2019-12-31",
+    "observationDate": "2019-12-31",
+    "measurementValue": 4692.5,
+    "unitText": "EUR",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Salario Decil 90-100"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Spain"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Salario_Mas_Frecuente-2019-12-31",
+    "observationDate": "2019-12-31",
+    "measurementValue": 16010.8,
+    "unitText": "EUR",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Salario_Mas_Frecuente"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Spain"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Salario_mediano-2019-12-31",
+    "observationDate": "2019-12-31",
+    "measurementValue": 20165.0,
+    "unitText": "EUR",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Salario mediano"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Spain"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Salario_Medio-2019-12-31",
+    "observationDate": "2019-12-31",
+    "measurementValue": 24308.2,
+    "unitText": "EUR",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Salario_Medio"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Spain"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Salario_Decil_20-30-2019-12-31",
+    "observationDate": "2019-12-31",
+    "measurementValue": 1222.5,
+    "unitText": "EUR",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Salario Decil 20-30"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Spain"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Salario_Decil_30-40-2019-12-31",
+    "observationDate": "2019-12-31",
+    "measurementValue": 1418.1,
+    "unitText": "EUR",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Salario Decil 30-40"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Spain"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/IPC_General_Base2021-2019-12-31",
+    "observationDate": "2019-12-31",
+    "measurementValue": 105.228,
+    "unitText": "Índice",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "IPC_General_Base2021"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Spain"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Salario_Decil_0-10-2019-12-31",
+    "observationDate": "2019-12-31",
+    "measurementValue": 538.65,
+    "unitText": "EUR",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Salario Decil 0-10"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Spain"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Salario_Decil_10-20-2019-12-31",
+    "observationDate": "2019-12-31",
+    "measurementValue": 996.9,
+    "unitText": "EUR",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Salario Decil 10-20"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Spain"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Salario_Decil_40-50-2020-12-31",
+    "observationDate": "2020-12-31",
+    "measurementValue": 1606.55,
+    "unitText": "EUR",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Salario Decil 40-50"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Spain"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Salario_Decil_50-60-2020-12-31",
+    "observationDate": "2020-12-31",
+    "measurementValue": 1817.05,
+    "unitText": "EUR",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Salario Decil 50-60"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Spain"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Salario_Decil_60-70-2020-12-31",
+    "observationDate": "2020-12-31",
+    "measurementValue": 2107.5,
+    "unitText": "EUR",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Salario Decil 60-70"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Spain"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Salario_Decil_70-80-2020-12-31",
+    "observationDate": "2020-12-31",
+    "measurementValue": 2542.1,
+    "unitText": "EUR",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Salario Decil 70-80"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Spain"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Salario_Decil_80-90-2020-12-31",
+    "observationDate": "2020-12-31",
+    "measurementValue": 3159.1,
+    "unitText": "EUR",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Salario Decil 80-90"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Spain"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Salario_Decil_90-100-2020-12-31",
+    "observationDate": "2020-12-31",
+    "measurementValue": 4943.15,
+    "unitText": "EUR",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Salario Decil 90-100"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Spain"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/IPC_General_Base2021-2020-12-31",
+    "observationDate": "2020-12-31",
+    "measurementValue": 104.668,
+    "unitText": "Índice",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "IPC_General_Base2021"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Spain"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Salario_Decil_0-10-2020-12-31",
+    "observationDate": "2020-12-31",
+    "measurementValue": 531.25,
+    "unitText": "EUR",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Salario Decil 0-10"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Spain"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Salario_Decil_10-20-2020-12-31",
+    "observationDate": "2020-12-31",
+    "measurementValue": 1007.8,
+    "unitText": "EUR",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Salario Decil 10-20"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Spain"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Salario_Decil_20-30-2020-12-31",
+    "observationDate": "2020-12-31",
+    "measurementValue": 1237.2,
+    "unitText": "EUR",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Salario Decil 20-30"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Spain"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Salario_Decil_30-40-2020-12-31",
+    "observationDate": "2020-12-31",
+    "measurementValue": 1423.4,
+    "unitText": "EUR",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Salario Decil 30-40"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Spain"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Salario_Mas_Frecuente-2020-12-31",
+    "observationDate": "2020-12-31",
+    "measurementValue": 16011.7,
+    "unitText": "EUR",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Salario_Mas_Frecuente"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Spain"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Salario_mediano-2020-12-31",
+    "observationDate": "2020-12-31",
+    "measurementValue": 20665.39,
+    "unitText": "EUR",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Salario mediano"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Spain"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Salario_Medio-2020-12-31",
+    "observationDate": "2020-12-31",
+    "measurementValue": 25055.0,
+    "unitText": "EUR",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Salario_Medio"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Spain"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Asalariados_Total-2020-12-31",
+    "observationDate": "2020-12-31",
+    "measurementValue": 16109100.0,
+    "unitText": "Personas",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Asalariados Total"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Global"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Desempleo_70_y_mas-2021-12-31",
+    "observationDate": "2021-12-31",
+    "measurementValue": 0.05,
+    "unitText": "%",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Desempleo 70 y mas"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Global"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Desempleo_65-69-2021-12-31",
+    "observationDate": "2021-12-31",
+    "measurementValue": 0.44,
+    "unitText": "%",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Desempleo 65-69"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Global"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Salario_Decil_70-80-2021-12-31",
+    "observationDate": "2021-12-31",
+    "measurementValue": 2559.35,
+    "unitText": "EUR",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Salario Decil 70-80"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Spain"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Salario_Decil_80-90-2021-12-31",
+    "observationDate": "2021-12-31",
+    "measurementValue": 3141.9,
+    "unitText": "EUR",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Salario Decil 80-90"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Spain"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Salario_Decil_90-100-2021-12-31",
+    "observationDate": "2021-12-31",
+    "measurementValue": 5072.4,
+    "unitText": "EUR",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Salario Decil 90-100"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Spain"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Desempleo_16-19-2021-12-31",
+    "observationDate": "2021-12-31",
+    "measurementValue": 3.78,
+    "unitText": "%",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Desempleo 16-19"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Global"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Desempleo_60-64-2021-12-31",
+    "observationDate": "2021-12-31",
+    "measurementValue": 6.1,
+    "unitText": "%",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Desempleo 60-64"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Global"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Desempleo_55-59-2021-12-31",
+    "observationDate": "2021-12-31",
+    "measurementValue": 10.04,
+    "unitText": "%",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Desempleo 55-59"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Global"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Desempleo_35-39-2021-12-31",
+    "observationDate": "2021-12-31",
+    "measurementValue": 10.58,
+    "unitText": "%",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Desempleo 35-39"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Global"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Desempleo_30-34-2021-12-31",
+    "observationDate": "2021-12-31",
+    "measurementValue": 10.62,
+    "unitText": "%",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Desempleo 30-34"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Global"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Desempleo_50-54-2021-12-31",
+    "observationDate": "2021-12-31",
+    "measurementValue": 10.93,
+    "unitText": "%",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Desempleo 50-54"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Global"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Desempleo_40-44-2021-12-31",
+    "observationDate": "2021-12-31",
+    "measurementValue": 11.28,
+    "unitText": "%",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Desempleo 40-44"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Global"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Desempleo_45-49-2021-12-31",
+    "observationDate": "2021-12-31",
+    "measurementValue": 11.47,
+    "unitText": "%",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Desempleo 45-49"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Global"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Desempleo_20-24-2021-12-31",
+    "observationDate": "2021-12-31",
+    "measurementValue": 11.49,
+    "unitText": "%",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Desempleo 20-24"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Global"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Desempleo_25-29-2021-12-31",
+    "observationDate": "2021-12-31",
+    "measurementValue": 13.22,
+    "unitText": "%",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Desempleo 25-29"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Global"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/IPC_General_Base2021-2021-12-31",
+    "observationDate": "2021-12-31",
+    "measurementValue": 111.524,
+    "unitText": "Índice",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "IPC_General_Base2021"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Spain"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Salario_Decil_0-10-2021-12-31",
+    "observationDate": "2021-12-31",
+    "measurementValue": 575.8,
+    "unitText": "EUR",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Salario Decil 0-10"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Spain"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Salario_Decil_10-20-2021-12-31",
+    "observationDate": "2021-12-31",
+    "measurementValue": 1037.15,
+    "unitText": "EUR",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Salario Decil 10-20"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Spain"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Salario_Decil_40-50-2021-12-31",
+    "observationDate": "2021-12-31",
+    "measurementValue": 1652.25,
+    "unitText": "EUR",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Salario Decil 40-50"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Spain"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Salario_Decil_50-60-2021-12-31",
+    "observationDate": "2021-12-31",
+    "measurementValue": 1866.65,
+    "unitText": "EUR",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Salario Decil 50-60"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Spain"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Salario_Decil_60-70-2021-12-31",
+    "observationDate": "2021-12-31",
+    "measurementValue": 2148.2,
+    "unitText": "EUR",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Salario Decil 60-70"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Spain"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Salario_Decil_20-30-2021-12-31",
+    "observationDate": "2021-12-31",
+    "measurementValue": 1256.95,
+    "unitText": "EUR",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Salario Decil 20-30"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Spain"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Salario_Decil_30-40-2021-12-31",
+    "observationDate": "2021-12-31",
+    "measurementValue": 1454.75,
+    "unitText": "EUR",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Salario Decil 30-40"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Spain"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Salario_Mas_Frecuente-2021-12-31",
+    "observationDate": "2021-12-31",
+    "measurementValue": 16984.57,
+    "unitText": "EUR",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Salario_Mas_Frecuente"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Spain"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Salario_mediano-2021-12-31",
+    "observationDate": "2021-12-31",
+    "measurementValue": 21326.54,
+    "unitText": "EUR",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Salario mediano"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Spain"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Salario_Medio-2021-12-31",
+    "observationDate": "2021-12-31",
+    "measurementValue": 25782.32,
+    "unitText": "EUR",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Salario_Medio"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Spain"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Asalariados_Total-2021-12-31",
+    "observationDate": "2021-12-31",
+    "measurementValue": 16660700.0,
+    "unitText": "Personas",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Asalariados Total"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Global"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Salario_Decil_70-80-2022-12-31",
+    "observationDate": "2022-12-31",
+    "measurementValue": 2593.6,
+    "unitText": "EUR",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Salario Decil 70-80"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Spain"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Salario_Decil_80-90-2022-12-31",
+    "observationDate": "2022-12-31",
+    "measurementValue": 3173.2,
+    "unitText": "EUR",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Salario Decil 80-90"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Spain"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Salario_Decil_90-100-2022-12-31",
+    "observationDate": "2022-12-31",
+    "measurementValue": 4983.6,
+    "unitText": "EUR",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Salario Decil 90-100"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Spain"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Desempleo_70_y_mas-2022-12-31",
+    "observationDate": "2022-12-31",
+    "measurementValue": 0.06,
+    "unitText": "%",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Desempleo 70 y mas"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Global"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Desempleo_65-69-2022-12-31",
+    "observationDate": "2022-12-31",
+    "measurementValue": 0.53,
+    "unitText": "%",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Desempleo 65-69"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Global"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Desempleo_16-19-2022-12-31",
+    "observationDate": "2022-12-31",
+    "measurementValue": 4.25,
+    "unitText": "%",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Desempleo 16-19"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Global"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Desempleo_60-64-2022-12-31",
+    "observationDate": "2022-12-31",
+    "measurementValue": 6.79,
+    "unitText": "%",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Desempleo 60-64"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Global"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Desempleo_55-59-2022-12-31",
+    "observationDate": "2022-12-31",
+    "measurementValue": 9.83,
+    "unitText": "%",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Desempleo 55-59"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Global"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Desempleo_30-34-2022-12-31",
+    "observationDate": "2022-12-31",
+    "measurementValue": 10.0,
+    "unitText": "%",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Desempleo 30-34"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Global"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Desempleo_35-39-2022-12-31",
+    "observationDate": "2022-12-31",
+    "measurementValue": 10.51,
+    "unitText": "%",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Desempleo 35-39"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Global"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Desempleo_40-44-2022-12-31",
+    "observationDate": "2022-12-31",
+    "measurementValue": 11.18,
+    "unitText": "%",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Desempleo 40-44"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Global"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Desempleo_20-24-2022-12-31",
+    "observationDate": "2022-12-31",
+    "measurementValue": 11.38,
+    "unitText": "%",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Desempleo 20-24"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Global"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Desempleo_45-49-2022-12-31",
+    "observationDate": "2022-12-31",
+    "measurementValue": 11.43,
+    "unitText": "%",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Desempleo 45-49"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Global"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Desempleo_25-29-2022-12-31",
+    "observationDate": "2022-12-31",
+    "measurementValue": 11.58,
+    "unitText": "%",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Desempleo 25-29"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Global"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Desempleo_50-54-2022-12-31",
+    "observationDate": "2022-12-31",
+    "measurementValue": 12.41,
+    "unitText": "%",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Desempleo 50-54"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Global"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Salario_Decil_0-10-2022-12-31",
+    "observationDate": "2022-12-31",
+    "measurementValue": 630.1,
+    "unitText": "EUR",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Salario Decil 0-10"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Spain"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Salario_Mas_Frecuente-2022-12-31",
+    "observationDate": "2022-12-31",
+    "measurementValue": 17031.9,
+    "unitText": "EUR",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Salario_Mas_Frecuente"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Spain"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Salario_mediano-2022-12-31",
+    "observationDate": "2022-12-31",
+    "measurementValue": 22141.59,
+    "unitText": "EUR",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Salario mediano"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Spain"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Salario_Medio-2022-12-31",
+    "observationDate": "2022-12-31",
+    "measurementValue": 26870.83,
+    "unitText": "EUR",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Salario_Medio"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Spain"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Asalariados_Total-2022-12-31",
+    "observationDate": "2022-12-31",
+    "measurementValue": 17369400.0,
+    "unitText": "Personas",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Asalariados Total"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Global"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Salario_Decil_30-40-2022-12-31",
+    "observationDate": "2022-12-31",
+    "measurementValue": 1522.95,
+    "unitText": "EUR",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Salario Decil 30-40"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Spain"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Salario_Decil_40-50-2022-12-31",
+    "observationDate": "2022-12-31",
+    "measurementValue": 1707.45,
+    "unitText": "EUR",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Salario Decil 40-50"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Spain"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Salario_Decil_50-60-2022-12-31",
+    "observationDate": "2022-12-31",
+    "measurementValue": 1913.75,
+    "unitText": "EUR",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Salario Decil 50-60"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Spain"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Salario_Decil_60-70-2022-12-31",
+    "observationDate": "2022-12-31",
+    "measurementValue": 2181.8,
+    "unitText": "EUR",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Salario Decil 60-70"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Spain"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Salario_Decil_10-20-2022-12-31",
+    "observationDate": "2022-12-31",
+    "measurementValue": 1134.2,
+    "unitText": "EUR",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Salario Decil 10-20"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Spain"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Salario_Decil_20-30-2022-12-31",
+    "observationDate": "2022-12-31",
+    "measurementValue": 1338.85,
+    "unitText": "EUR",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Salario Decil 20-30"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Spain"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Desempleo_70_y_mas-2023-12-31",
+    "observationDate": "2023-12-31",
+    "measurementValue": 0.06,
+    "unitText": "%",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Desempleo 70 y mas"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Global"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Desempleo_65-69-2023-12-31",
+    "observationDate": "2023-12-31",
+    "measurementValue": 0.74,
+    "unitText": "%",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Desempleo 65-69"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Global"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Salario_Decil_30-40-2023-12-31",
+    "observationDate": "2023-12-31",
+    "measurementValue": 1631.3,
+    "unitText": "EUR",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Salario Decil 30-40"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Spain"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Salario_Decil_40-50-2023-12-31",
+    "observationDate": "2023-12-31",
+    "measurementValue": 1833.95,
+    "unitText": "EUR",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Salario Decil 40-50"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Spain"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Salario_Decil_50-60-2023-12-31",
+    "observationDate": "2023-12-31",
+    "measurementValue": 2059.85,
+    "unitText": "EUR",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Salario Decil 50-60"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Spain"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Salario_Decil_60-70-2023-12-31",
+    "observationDate": "2023-12-31",
+    "measurementValue": 2356.75,
+    "unitText": "EUR",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Salario Decil 60-70"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Spain"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Desempleo_16-19-2023-12-31",
+    "observationDate": "2023-12-31",
+    "measurementValue": 4.37,
+    "unitText": "%",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Desempleo 16-19"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Global"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Desempleo_60-64-2023-12-31",
+    "observationDate": "2023-12-31",
+    "measurementValue": 7.0,
+    "unitText": "%",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Desempleo 60-64"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Global"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Desempleo_35-39-2023-12-31",
+    "observationDate": "2023-12-31",
+    "measurementValue": 10.01,
+    "unitText": "%",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Desempleo 35-39"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Global"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Desempleo_30-34-2023-12-31",
+    "observationDate": "2023-12-31",
+    "measurementValue": 10.22,
+    "unitText": "%",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Desempleo 30-34"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Global"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Desempleo_40-44-2023-12-31",
+    "observationDate": "2023-12-31",
+    "measurementValue": 10.46,
+    "unitText": "%",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Desempleo 40-44"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Global"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Desempleo_55-59-2023-12-31",
+    "observationDate": "2023-12-31",
+    "measurementValue": 10.65,
+    "unitText": "%",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Desempleo 55-59"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Global"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Desempleo_50-54-2023-12-31",
+    "observationDate": "2023-12-31",
+    "measurementValue": 10.97,
+    "unitText": "%",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Desempleo 50-54"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Global"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Desempleo_45-49-2023-12-31",
+    "observationDate": "2023-12-31",
+    "measurementValue": 11.43,
+    "unitText": "%",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Desempleo 45-49"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Global"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Desempleo_25-29-2023-12-31",
+    "observationDate": "2023-12-31",
+    "measurementValue": 11.73,
+    "unitText": "%",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Desempleo 25-29"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Global"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Desempleo_20-24-2023-12-31",
+    "observationDate": "2023-12-31",
+    "measurementValue": 12.38,
+    "unitText": "%",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Desempleo 20-24"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Global"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Salario_Decil_0-10-2023-12-31",
+    "observationDate": "2023-12-31",
+    "measurementValue": 654.3,
+    "unitText": "EUR",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Salario Decil 0-10"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Spain"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Salario_Decil_10-20-2023-12-31",
+    "observationDate": "2023-12-31",
+    "measurementValue": 1212.15,
+    "unitText": "EUR",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Salario Decil 10-20"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Spain"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Salario_Decil_20-30-2023-12-31",
+    "observationDate": "2023-12-31",
+    "measurementValue": 1434.35,
+    "unitText": "EUR",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Salario Decil 20-30"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Spain"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Salario_Decil_70-80-2023-12-31",
+    "observationDate": "2023-12-31",
+    "measurementValue": 2782.0,
+    "unitText": "EUR",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Salario Decil 70-80"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Spain"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Salario_Decil_80-90-2023-12-31",
+    "observationDate": "2023-12-31",
+    "measurementValue": 3390.9,
+    "unitText": "EUR",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Salario Decil 80-90"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Spain"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Salario_Decil_90-100-2023-12-31",
+    "observationDate": "2023-12-31",
+    "measurementValue": 5372.1,
+    "unitText": "EUR",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Salario Decil 90-100"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Spain"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Salario_Medio-2023-12-31",
+    "observationDate": "2023-12-31",
+    "measurementValue": 27981.9,
+    "unitText": "EUR",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Salario_Medio"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Spain"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Asalariados_Total-2023-12-31",
+    "observationDate": "2023-12-31",
+    "measurementValue": 17963000.0,
+    "unitText": "Personas",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Asalariados Total"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Global"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Desempleo_70_y_mas-2024-12-31",
+    "observationDate": "2024-12-31",
+    "measurementValue": 0.06,
+    "unitText": "%",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Desempleo 70 y mas"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Global"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Desempleo_65-69-2024-12-31",
+    "observationDate": "2024-12-31",
+    "measurementValue": 0.85,
+    "unitText": "%",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Desempleo 65-69"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Global"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Asalariados_Total-2024-12-31",
+    "observationDate": "2024-12-31",
+    "measurementValue": 18439800.0,
+    "unitText": "Personas",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Asalariados Total"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Global"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Desempleo_16-19-2024-12-31",
+    "observationDate": "2024-12-31",
+    "measurementValue": 4.82,
+    "unitText": "%",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Desempleo 16-19"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Global"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Desempleo_60-64-2024-12-31",
+    "observationDate": "2024-12-31",
+    "measurementValue": 7.56,
+    "unitText": "%",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Desempleo 60-64"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Global"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Desempleo_35-39-2024-12-31",
+    "observationDate": "2024-12-31",
+    "measurementValue": 8.89,
+    "unitText": "%",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Desempleo 35-39"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Global"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Desempleo_30-34-2024-12-31",
+    "observationDate": "2024-12-31",
+    "measurementValue": 10.03,
+    "unitText": "%",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Desempleo 30-34"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Global"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Desempleo_55-59-2024-12-31",
+    "observationDate": "2024-12-31",
+    "measurementValue": 10.33,
+    "unitText": "%",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Desempleo 55-59"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Global"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Desempleo_40-44-2024-12-31",
+    "observationDate": "2024-12-31",
+    "measurementValue": 10.44,
+    "unitText": "%",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Desempleo 40-44"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Global"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Desempleo_50-54-2024-12-31",
+    "observationDate": "2024-12-31",
+    "measurementValue": 11.1,
+    "unitText": "%",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Desempleo 50-54"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Global"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Desempleo_45-49-2024-12-31",
+    "observationDate": "2024-12-31",
+    "measurementValue": 11.43,
+    "unitText": "%",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Desempleo 45-49"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Global"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Desempleo_25-29-2024-12-31",
+    "observationDate": "2024-12-31",
+    "measurementValue": 12.13,
+    "unitText": "%",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Desempleo 25-29"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Global"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Desempleo_20-24-2024-12-31",
+    "observationDate": "2024-12-31",
+    "measurementValue": 12.37,
+    "unitText": "%",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Desempleo 20-24"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Global"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/IBEX35_Close-2025-10-24",
+    "observationDate": "2025-10-24",
+    "measurementValue": 15861.5,
+    "unitText": "Puntos",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "IBEX35_Close"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Spain"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/EUR_USD_ExchangeRate-2025-10-24",
+    "observationDate": "2025-10-24",
+    "measurementValue": 1.1618,
+    "unitText": "USD/EUR",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "EUR_USD_ExchangeRate"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Global"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Gold_Price_EUR-2025-10-24",
+    "observationDate": "2025-10-24",
+    "measurementValue": 3544.8302,
+    "unitText": "EUR/oz",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Gold_Price_EUR"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Global"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Gold_Price_USD-2025-10-24",
+    "observationDate": "2025-10-24",
+    "measurementValue": 4118.3999,
+    "unitText": "USD/oz",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Gold_Price_USD"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Global"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Gold_Price_EUR-2025-10-27",
+    "observationDate": "2025-10-27",
+    "measurementValue": 3440.5134,
+    "unitText": "EUR/oz",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Gold_Price_EUR"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Global"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Gold_Price_USD-2025-10-27",
+    "observationDate": "2025-10-27",
+    "measurementValue": 4001.8999,
+    "unitText": "USD/oz",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Gold_Price_USD"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Global"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/EUR_USD_ExchangeRate-2025-10-27",
+    "observationDate": "2025-10-27",
+    "measurementValue": 1.1632,
+    "unitText": "USD/EUR",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "EUR_USD_ExchangeRate"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Global"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/IBEX35_Close-2025-10-27",
+    "observationDate": "2025-10-27",
+    "measurementValue": 16000.2002,
+    "unitText": "Puntos",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "IBEX35_Close"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Spain"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/IBEX35_Close-2025-10-28",
+    "observationDate": "2025-10-28",
+    "measurementValue": 16087.0,
+    "unitText": "Puntos",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "IBEX35_Close"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Spain"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/EUR_USD_ExchangeRate-2025-10-28",
+    "observationDate": "2025-10-28",
+    "measurementValue": 1.1652,
+    "unitText": "USD/EUR",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "EUR_USD_ExchangeRate"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Global"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Gold_Price_EUR-2025-10-28",
+    "observationDate": "2025-10-28",
+    "measurementValue": 3403.9516,
+    "unitText": "EUR/oz",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Gold_Price_EUR"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Global"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Gold_Price_USD-2025-10-28",
+    "observationDate": "2025-10-28",
+    "measurementValue": 3966.2,
+    "unitText": "USD/oz",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Gold_Price_USD"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Global"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Gold_Price_EUR-2025-10-29",
+    "observationDate": "2025-10-29",
+    "measurementValue": 3417.178,
+    "unitText": "EUR/oz",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Gold_Price_EUR"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Global"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Gold_Price_USD-2025-10-29",
+    "observationDate": "2025-10-29",
+    "measurementValue": 3983.7,
+    "unitText": "USD/oz",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Gold_Price_USD"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Global"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/EUR_USD_ExchangeRate-2025-10-29",
+    "observationDate": "2025-10-29",
+    "measurementValue": 1.1658,
+    "unitText": "USD/EUR",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "EUR_USD_ExchangeRate"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Global"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/IBEX35_Close-2025-10-29",
+    "observationDate": "2025-10-29",
+    "measurementValue": 16150.0996,
+    "unitText": "Puntos",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "IBEX35_Close"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Spain"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/IBEX35_Close-2025-10-30",
+    "observationDate": "2025-10-30",
+    "measurementValue": 16040.2998,
+    "unitText": "Puntos",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "IBEX35_Close"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Spain"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Gold_Price_EUR-2025-10-30",
+    "observationDate": "2025-10-30",
+    "measurementValue": 3478.1457,
+    "unitText": "EUR/oz",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Gold_Price_EUR"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Global"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Gold_Price_USD-2025-10-30",
+    "observationDate": "2025-10-30",
+    "measurementValue": 4024.7,
+    "unitText": "USD/oz",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Gold_Price_USD"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Global"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/EUR_USD_ExchangeRate-2025-10-30",
+    "observationDate": "2025-10-30",
+    "measurementValue": 1.1571,
+    "unitText": "USD/EUR",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "EUR_USD_ExchangeRate"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Global"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Desempleo_70_y_mas-2025-12-31",
+    "observationDate": "2025-12-31",
+    "measurementValue": 0.06,
+    "unitText": "%",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Desempleo 70 y mas"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Global"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Desempleo_65-69-2025-12-31",
+    "observationDate": "2025-12-31",
+    "measurementValue": 0.88,
+    "unitText": "%",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Desempleo 65-69"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Global"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Desempleo_16-19-2025-12-31",
+    "observationDate": "2025-12-31",
+    "measurementValue": 4.7,
+    "unitText": "%",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Desempleo 16-19"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Global"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Desempleo_60-64-2025-12-31",
+    "observationDate": "2025-12-31",
+    "measurementValue": 7.98,
+    "unitText": "%",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Desempleo 60-64"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Global"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Desempleo_35-39-2025-12-31",
+    "observationDate": "2025-12-31",
+    "measurementValue": 9.08,
+    "unitText": "%",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Desempleo 35-39"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Global"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Desempleo_30-34-2025-12-31",
+    "observationDate": "2025-12-31",
+    "measurementValue": 9.24,
+    "unitText": "%",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Desempleo 30-34"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Global"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Desempleo_40-44-2025-12-31",
+    "observationDate": "2025-12-31",
+    "measurementValue": 10.48,
+    "unitText": "%",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Desempleo 40-44"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Global"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Desempleo_50-54-2025-12-31",
+    "observationDate": "2025-12-31",
+    "measurementValue": 10.69,
+    "unitText": "%",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Desempleo 50-54"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Global"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Desempleo_55-59-2025-12-31",
+    "observationDate": "2025-12-31",
+    "measurementValue": 10.7,
+    "unitText": "%",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Desempleo 55-59"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Global"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Desempleo_45-49-2025-12-31",
+    "observationDate": "2025-12-31",
+    "measurementValue": 11.0,
+    "unitText": "%",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Desempleo 45-49"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Global"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Desempleo_25-29-2025-12-31",
+    "observationDate": "2025-12-31",
+    "measurementValue": 12.08,
+    "unitText": "%",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Desempleo 25-29"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Global"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Observation",
+    "@id": "https://example.org/observation/Desempleo_20-24-2025-12-31",
+    "observationDate": "2025-12-31",
+    "measurementValue": 13.1,
+    "unitText": "%",
+    "variableMeasured": {
+      "@type": "Property",
+      "name": "Desempleo 20-24"
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Global"
+    }
+  }
+]
