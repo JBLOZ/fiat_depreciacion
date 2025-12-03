@@ -52,29 +52,6 @@ print("  2. Precio del Oro (USD/oz) → ORO (USD_oz)/")
 print("  3. IBEX-35 → Indices Bursátiles/")
 print("="*80)
 
-def guardar_metadata(nombre_dataset, info):
-    """Guarda metadatos de cada dataset descargado"""
-    metadata_file = RAW_DIR / "metadata.json"
-    
-    # Cargar metadata existente si existe
-    if metadata_file.exists():
-        with open(metadata_file, 'r', encoding='utf-8') as f:
-            metadata = json.load(f)
-    else:
-        metadata = {}
-    
-    # Agregar nueva información
-    metadata[nombre_dataset] = {
-        **info,
-        'fecha_descarga': datetime.now().isoformat(),
-        'periodo': f"{START_DATE} a {END_DATE}"
-    }
-    
-    # Guardar
-    with open(metadata_file, 'w', encoding='utf-8') as f:
-        json.dump(metadata, f, indent=2, ensure_ascii=False)
-    
-    print(f"✓ Metadata guardada para {nombre_dataset}")
 
 # ============================================================================
 # DATASET 1: TIPO DE CAMBIO EUR/USD (BCE, Yahoo Finance)
@@ -98,15 +75,7 @@ def descargar_eur_usd():
             print(f"  ✓ Descargado: {len(df)} registros")
             print(f"  ✓ Guardado en: {output_file}")
             
-            guardar_metadata('eur_usd_exchange_rate', {
-                'fuente': 'Yahoo Finance',
-                'registros': len(df),
-                'campos': list(df.columns),
-                'fecha_inicio': str(df['date'].min()),
-                'fecha_fin': str(df['date'].max()),
-                'url': 'https://finance.yahoo.com/quote/EURUSD=X',
-                'licencia': 'Uso personal/académico'
-            })
+            
             
             return True
         else:
@@ -139,16 +108,7 @@ def descargar_oro():
             print(f"  ✓ Descargado: {len(df)} registros")
             print(f"  ✓ Guardado en: {output_file}")
             
-            guardar_metadata('gold_price_usd', {
-                'fuente': 'Yahoo Finance - Gold Futures (GC=F)',
-                'registros': len(df),
-                'campos': list(df.columns),
-                'fecha_inicio': str(df['date'].min()),
-                'fecha_fin': str(df['date'].max()),
-                'url': 'https://finance.yahoo.com/quote/GC=F',
-                'licencia': 'Uso personal/académico',
-                'notas': 'Gold Futures - COMEX'
-            })
+            
             
             return True
         else:
@@ -185,16 +145,7 @@ def descargar_ibex35():
             print(f"  ✓ Descargado: {len(df)} registros")
             print(f"  ✓ Guardado en: {output_file}")
             
-            guardar_metadata('ibex35_daily', {
-                'fuente': 'Yahoo Finance',
-                'registros': len(df),
-                'campos': list(df.columns),
-                'fecha_inicio': str(df['date'].min()),
-                'fecha_fin': str(df['date'].max()),
-                'url': 'https://finance.yahoo.com/quote/%5EIBEX',
-                'licencia': 'Uso personal/académico',
-                'notas': 'Índice IBEX-35 diario con retornos logarítmicos calculados'
-            })
+            
             
             return True
         else:
