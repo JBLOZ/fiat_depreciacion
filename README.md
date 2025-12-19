@@ -1,71 +1,38 @@
-# Macroeconomic Indicators for Spain: Power of Acquisition Analysis (2010-2025)
-
-
+# Depreciación del euro y poder adquisitivo en España
 
 ## Descripción
 
+Este repositorio contiene un proyecto de análisis de datos centrado en el estudio de la depreciación del euro y la evolución del poder adquisitivo en España entre 2010 y 2025. El trabajo combina adquisición de datos, procesos ETL, modelado analítico y visualización, siguiendo un enfoque reproducible y orientado al análisis económico.
 
+## Objetivo
 
-Almacén de datos integrado que analiza la erosión del poder adquisitivo de las familias 
-españolas vinculándolo con depreciación de las monedas fiat (el euro en este caso), 
-a partir de datos como la inflación (HICP/IPC), salarios nominales y reales, 
-evolución de índices bursátiles (IBEX-35), tipos de cambio EUR/USD y precio del oro.
+Analizar cómo la inflación, los salarios y la evolución de activos financieros han afectado al poder adquisitivo de los hogares españoles, utilizando datos económicos reales integrados en un almacén de datos analítico.
 
+## Estructura del repositorio
 
+- `datos/`: datasets procesados y exportaciones finales.
+- `scripts/`: scripts Python para descarga, limpieza y generación de indicadores.
+- `pentajo/`: transformaciones ETL realizadas con Pentaho Data Integration.
+- `sql/`: esquema del almacén de datos y backups.
+- `notebooks/`: análisis, visualizaciones y transformación semántica.
+- `docs/`: material gráfico y documentación de apoyo.
 
-**Preguntas de investigación:**
+## Tecnologías utilizadas
 
-- P1: ¿Cómo ha evolucionado el poder adquisitivo real en España (2010-2025)?
+- Python (pandas, numpy, visualización)
+- Pentaho Data Integration
+- SQL
+- Jupyter Notebook
+- JSON-LD / schema.org
 
-- P2: ¿Qué relación existe entre inflación y salarios reales?
+## Resultados
 
-- P3: ¿Cómo se correlaciona el oro en EUR con la pérdida de poder adquisitivo?
+Los resultados principales se presentan mediante visualizaciones que muestran la evolución del poder adquisitivo, la inflación y la relación con activos financieros como el IBEX-35 y el oro.
 
-- P4: ¿Es el IBEX-35 cobertura efectiva contra inflación?
+## Documentación
 
-- P5: ¿Cuál ha sido el impacto de depreciación del euro?
+Para una explicación completa del proyecto, la metodología y los resultados, consultar el archivo `PROYECTO.md`.
 
+## Contexto académico
 
-
-## Estructura del Proyecto
-
-
-
-Ver archivo `docs/ESTRUCTURA_PROYECTO.md` para detalle completo.
-
-
-
-Directorios principales:
-
-- `data/` - Datos raw, processed, e intermedios
-
-- `etl/` - Pipelines Pentaho + Python
-
-- `src/` - Scripts SQL, Python de configuración
-
-- `viz/` - Visualizaciones HTML interactivas
-
-- `schemaorg/` - Transformaciones RDF/JSON-LD
-
-- `docs/` - Documentación completa
-
-
-
-## Requisitos y Preparación del Entorno
-
-
-
-### Requisitos Previos
-
-- Python 3.9+
-
-- PostgreSQL 12+
-
-- Pentaho Data Integration (Community Edition) 9.0+
-
-- Git
-
-
-
-
-
+Proyecto desarrollado en el marco de la asignatura *Adquisición y Preparación de Datos* del Grado en Ingeniería en Inteligencia Artificial (Universidad de Alicante).
