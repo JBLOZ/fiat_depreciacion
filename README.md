@@ -363,7 +363,7 @@ El diseño conceptual se basa en el paradigma **"eventos + contexto"**:
 
 #### Diagrama conceptual (textual)
 
-![alt text](docs/memoria/conceptual.png)
+![alt text](docs/conceptual.png)
 
 ### 3.3 Diseño lógico
 
@@ -564,7 +564,7 @@ El diagrama ER completo (disponible en `sql/diagrama.svg`) muestra:
 - Claves foráneas y sus relaciones (líneas con flechas)
 
 **Vista Diagrama ER final:**
-![alt text](docs/memoria/diagrama.png)
+![alt text](docs/diagrama.png)
 
 
 ---
