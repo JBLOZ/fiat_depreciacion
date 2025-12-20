@@ -14,20 +14,9 @@
 \usepackage[capitalize,noabbrev]{cleveref}
 \usepackage{tabla}
 \usepackage{lastpage}
-
-\makeatletter
-\renewcommand{\ICML@appearing}{}
-\fancypagestyle{lastpagestyle}{%
-  \fancyhf{}
-  \fancyhead{}
-  \chead{}
-  \cfoot{\thepage\\[0.3cm]\small\hypertarget{author1}{}\textsuperscript{1}Jordi Blasco Lozano -- DNI: 74527208D -- jordiblloz@gmail.com}
-  \renewcommand{\headrulewidth}{1pt}
-}
-\AtEndDocument{\thispagestyle{lastpagestyle}}
-\makeatother
-
+\usepackage{eurosym}
 \usepackage[accepted]{icml2025}
+\usepackage{fancyhdr}
 \icmltitlerunning{Depreciación del euro y erosión del poder adquisitivo en España (2010-2025)}
 
 \begin{document}
@@ -111,7 +100,7 @@ Para estructurar el análisis, hemos definido cinco preguntas de investigación 
 
 \subsubsection{Pregunta 1: Evolución de activos vs. efectivo}
 
-¿Cómo ha evolucionado el valor real de una inversión inicial de 100\euro{} en diferentes activos (efectivo, oro, IBEX-35, salario medio) durante el periodo 2010-2025, ajustado por inflación?
+¿Cómo ha evolucionado el valor real de una inversión inicial de 100 EUR en diferentes activos (efectivo, oro, IBEX-35, salario medio) durante el periodo 2010-2025, ajustado por inflación?
 
 \textbf{Justificación:} Esta pregunta nos permite comparar visualmente la preservación de valor de diferentes estrategias de ahorro. El efectivo representa la ``no-estrategia'' (dejar el dinero sin invertir), mientras que oro y bolsa representan activos refugio tradicionales. El salario medio actúa como proxy del poder adquisitivo del trabajador promedio.
 
@@ -239,13 +228,13 @@ Este proyecto demuestra que \textbf{los datos cuentan historias que las narrativ
 
 \begin{verbatim}
 fiat_depreciacion/
-├── datos/              # Raw y Procesados
-├── docs/               # Memoria, enunciado e imágenes
-├── notebooks/          # Jupyter Notebooks
-├── pentaho/            # Transformaciones ETL
-├── scripts/            # Automatización Python
-├── sql/                # Backups de base de datos
-└── docker-compose.yml  # Configuración MySQL
+  datos/              # Raw y Procesados
+  docs/               # Memoria, enunciado e imágenes
+  notebooks/          # Jupyter Notebooks
+  pentaho/            # Transformaciones ETL
+  scripts/            # Automatización Python
+  sql/                # Backups de base de datos
+  docker-compose.yml  # Configuración MySQL
 \end{verbatim}
 
 \newpage
