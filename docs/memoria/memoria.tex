@@ -1,0 +1,267 @@
+%%%%%%%% ICML 2025 EXAMPLE LATEX SUBMISSION FILE %%%%%%%%%%%%%%%%%
+
+\documentclass{article}
+\usepackage[T1]{fontenc}
+\usepackage{microtype}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{amsthm}
+\usepackage[capitalize,noabbrev]{cleveref}
+\usepackage{tabla}
+\usepackage{lastpage}
+
+\makeatletter
+\renewcommand{\ICML@appearing}{}
+\fancypagestyle{lastpagestyle}{%
+  \fancyhf{}
+  \fancyhead{}
+  \chead{}
+  \cfoot{\thepage\\[0.3cm]\small\hypertarget{author1}{}\textsuperscript{1}Jordi Blasco Lozano -- DNI: 74527208D -- jordiblloz@gmail.com}
+  \renewcommand{\headrulewidth}{1pt}
+}
+\AtEndDocument{\thispagestyle{lastpagestyle}}
+\makeatother
+
+\usepackage[accepted]{icml2025}
+\icmltitlerunning{Depreciación del euro y erosión del poder adquisitivo en España (2010-2025)}
+
+\begin{document}
+
+\twocolumn[
+\icmltitle{Depreciación del euro y erosión del poder adquisitivo en España (2010-2025)}
+
+\begin{icmlauthorlist}
+\icmlauthor{Alejandro Martinez}{}
+\icmlauthor{Alejandro Parra}{}
+\icmlauthor{Mauro Carles}{}
+\icmlauthor{Jordi Blasco}{}
+\end{icmlauthorlist}
+
+\icmlkeywords{Economía, Inflación, Datos, ETL, Visualización}
+\vskip 0.3in
+]
+
+\begin{abstract}
+Durante el periodo 2010-2025, la economía española ha atravesado múltiples crisis que han impactado profundamente en el bienestar de los hogares. El periodo comenzó con las secuelas de la crisis financiera de 2008, continuó con la crisis de deuda europea (2010-2012), experimentó una recuperación moderada (2014-2019), enfrentó el shock de la pandemia COVID-19 (2020-2021), y recientemente ha vivido un repunte inflacionario sin precedentes (2021-2024) motivado por disrupciones en cadenas de suministro y tensiones geopolíticas.
+\end{abstract}
+
+\section*{Información del Proyecto}
+
+\textbf{Repositorio GitHub:} \url{https://github.com/JBLOZ/fiat_depreciacion}
+
+\textbf{Asignatura:} Adquisición y Preparación de Datos
+
+\textbf{Grado:} Ingeniería en Inteligencia Artificial
+
+\textbf{Universidad:} Universidad de Alicante - Escuela Politécnica Superior
+
+\newpage
+\tableofcontents
+\newpage
+
+\section{1. DEFINICIÓN DEL PROYECTO CENTRADO EN LOS DATOS}
+
+\subsection{1.1 Introducción y contexto económico}
+
+Durante el periodo 2010-2025, la economía española ha atravesado múltiples crisis que han impactado profundamente en el bienestar de los hogares. El periodo comenzó con las secuelas de la crisis financiera de 2008, continuó con la crisis de deuda europea (2010-2012), experimentó una recuperación moderada (2014-2019), enfrentó el shock de la pandemia COVID-19 (2020-2021), y recientemente ha vivido un repunte inflacionario sin precedentes (2021-2024) motivado por disrupciones en cadenas de suministro y tensiones geopolíticas.
+
+Este proyecto surge de una observación crítica: \textbf{las cifras oficiales de inflación (IPC) no capturan completamente la erosión del poder adquisitivo real de los ciudadanos}. Mientras el IPC oficial ha mostrado tasas moderadas en la mayor parte del periodo (con excepciones puntuales), otros indicadores económicos revelan una historia diferente:
+
+\begin{itemize}
+\item El \textbf{euro ha perdido valor} frente al dólar estadounidense de forma significativa
+\item Los \textbf{salarios nominales} han crecido por debajo de la inflación en muchos años
+\item Los \textbf{activos refugio} como el oro han experimentado revalorizaciones masivas
+\item La \textbf{brecha de desigualdad} se ha ampliado, no solo en ingresos, sino especialmente en patrimonio acumulado
+\end{itemize}
+
+Este fenómeno, que algunos economistas denominan \textbf{``inflación oculta''}, se manifiesta cuando medimos el bienestar económico no en euros nominales, sino en capacidad real de adquisición de bienes, servicios y activos tangibles.
+
+\subsection{1.2 Problemática y motivación}
+
+La problemática central que aborda este proyecto se puede resumir en las siguientes preguntas:
+
+\textbf{¿Qué ha pasado realmente con nuestro poder adquisitivo en los últimos 15 años?}
+
+Esta pregunta aparentemente simple esconde múltiples dimensiones:
+
+\begin{itemize}
+\item \textbf{Dimensión monetaria:} ¿Cuánto valor ha perdido el euro como unidad de cuenta?
+\item \textbf{Dimensión laboral:} ¿Han crecido los salarios al mismo ritmo que los precios?
+\item \textbf{Dimensión patrimonial:} ¿Qué estrategias de ahorro/inversión han protegido mejor el patrimonio?
+\item \textbf{Dimensión social:} ¿Se ha ampliado la brecha entre quienes tienen acceso a activos refugio y quienes no?
+\end{itemize}
+
+La motivación de este proyecto es \textbf{cuantificar con datos objetivos} estas dimensiones y proporcionar un análisis riguroso que vaya más allá de la narrativa oficial. Para ello, integramos:
+
+\begin{itemize}
+\item Datos macroeconómicos oficiales (INE, BCE)
+\item Datos de mercados financieros (bolsa española, mercado del oro)
+\item Análisis de distribución salarial por deciles
+\item Simulaciones de acumulación patrimonial según perfiles socioeconómicos
+\end{itemize}
+
+\subsection{1.3 Preguntas de investigación}
+
+Para estructurar el análisis, hemos definido cinco preguntas de investigación específicas:
+
+\subsubsection{Pregunta 1: Evolución de activos vs. efectivo}
+
+¿Cómo ha evolucionado el valor real de una inversión inicial de 100\euro{} en diferentes activos (efectivo, oro, IBEX-35, salario medio) durante el periodo 2010-2025, ajustado por inflación?
+
+\textbf{Justificación:} Esta pregunta nos permite comparar visualmente la preservación de valor de diferentes estrategias de ahorro. El efectivo representa la ``no-estrategia'' (dejar el dinero sin invertir), mientras que oro y bolsa representan activos refugio tradicionales. El salario medio actúa como proxy del poder adquisitivo del trabajador promedio.
+
+\subsubsection{Pregunta 2: Inflación oculta medida en oro}
+
+¿Cuál es la ``inflación oculta'' si medimos el salario medio español en onzas de oro en lugar de en euros nominales?
+
+\textbf{Justificación:} El oro ha sido históricamente una unidad de medida de valor estable a largo plazo. Si el salario en euros sube pero en oro baja, significa que el dinero está perdiendo valor más rápido que lo que refleja el IPC oficial. Esta pregunta revela la depreciación real de la moneda fiat.
+
+\subsubsection{Pregunta 3: Rendimientos reales por activo}
+
+¿Qué activos han ofrecido rendimientos reales positivos (después de inflación) de forma consistente durante 2010-2025?
+
+\textbf{Justificación:} Para un ciudadano que busca preservar su patrimonio, es crucial saber qué instrumentos financieros han funcionado realmente. Esta pregunta identifica cuáles han sido los ``ganadores'' y ``perdedores'' en términos de rentabilidad real.
+
+\subsubsection{Pregunta 4: Impacto de la capacidad de ahorro por decil salarial}
+
+¿Cómo afecta la capacidad de ahorro y la estrategia de inversión a la acumulación de patrimonio según el decil salarial al que se pertenece?
+
+\textbf{Justificación:} No todos los ciudadanos tienen la misma capacidad de ahorro. Esta pregunta simula escenarios realistas para tres perfiles (clase baja, media y alta) y muestra cómo pequeñas diferencias en ingresos se amplifican dramáticamente cuando se combina ahorro con acceso a activos que baten la inflación.
+
+\subsubsection{Pregunta 5: Desigualdad salarial vs. desigualdad patrimonial}
+
+¿En qué medida la brecha de desigualdad patrimonial supera a la brecha salarial debido al acceso diferencial a activos refugio?
+
+\textbf{Justificación:} Esta pregunta evidencia un efecto multiplicador oculto: aunque dos personas tengan salarios relativamente similares, si una invierte en activos que baten la inflación y la otra mantiene efectivo, la brecha patrimonial crece exponencialmente. Este es un factor clave en el aumento de la desigualdad en sociedades desarrolladas.
+
+\section*{Nota sobre Tablas y Contenido Extenso}
+
+Debido a la extensión del documento (100+ páginas de contenido técnico del README.md trasladado completamente), las tablas detalladas del modelo de datos, listados de transformaciones Pentaho, visualizaciones y análisis de calidad de datos se encuentran disponibles en:
+
+\begin{itemize}
+\item \texttt{README.md} (versión original en markdown)
+\item Documentación adicional en \texttt{docs/}
+\item Notebooks ejecutables en \texttt{notebooks/}
+\item Scripts de procesamiento en \texttt{scripts/}
+\end{itemize}
+
+Este documento constituye una síntesis ejecutiva de los aspectos principales del proyecto. Para una lectura completa con todas las tablas, figuras y detalles técnicos, se recomienda consultar el README.md y los notebooks asociados.
+
+\section{2. OBJETIVOS DEL PROYECTO}
+
+\subsection{Objetivos académicos}
+
+\begin{enumerate}
+\item \textbf{Integración de fuentes heterogéneas:} Combinar datasets con diferentes formatos (CSV, APIs), frecuencias temporales (anual, mensual, diario) y fuentes (institucionales, mercados)
+\item \textbf{Diseño de almacén de datos analítico:} Implementar un modelo estrella que permita consultas temporales complejas
+\item \textbf{Proceso ETL reproducible:} Desarrollar un pipeline completo usando Pentaho Data Integration y scripts Python
+\item \textbf{Transformación semántica:} Convertir los datos a formato JSON-LD usando vocabulario schema.org
+\item \textbf{Visualización orientada a insight:} Generar gráficos que respondan directamente a las preguntas de investigación
+\end{enumerate}
+
+\subsection{Objetivos técnicos}
+
+\begin{enumerate}
+\item \textbf{Automatización:} Scripts para obtener datos financieros desde Yahoo Finance
+\item \textbf{Limpieza robusta de datos:} Gestionar valores faltantes, outliers e inconsistencias
+\item \textbf{Base de datos contenedorizada:} Desplegar MySQL usando Docker Compose
+\item \textbf{Modelo dimensional escalable:} Diseño extensible sin modificar estructura
+\item \textbf{Exportación de datos:} Facilitar acceso a datos limpios para análisis externos
+\end{enumerate}
+
+\subsection{Objetivos analíticos}
+
+\begin{enumerate}
+\item \textbf{Cuantificar la inflación oculta:} Demostrar diferencia entre IPC oficial y depreciación real
+\item \textbf{Identificar activos refugio efectivos:} Determinar qué instrumentos protegieron mejor el patrimonio
+\item \textbf{Visualizar la desigualdad patrimonial:} Mostrar cómo el acceso a activos amplifica diferencias
+\item \textbf{Simular escenarios realistas:} Proyectar evolución patrimonial de diferentes perfiles
+\end{enumerate}
+
+\section{3. METODOLOGÍA Y DATASETS}
+
+El proyecto utiliza datos reales de fuentes oficiales durante el periodo 2010-2025:
+
+\begin{itemize}
+\item \textbf{IPC (INE):} Índice de Precios al Consumo, 2010-2021
+\item \textbf{Salarios (INE):} Salarios medios, medianos y por deciles, 2010-2023
+\item \textbf{Empleo (INE):} Asalariados indefinidos/temporales y desempleo por edad, 2010-2025
+\item \textbf{IBEX-35 (Yahoo Finance):} Datos diarios del índice bursátil español, 2010-2025
+\item \textbf{Oro (Yahoo Finance):} Cotización de futuros de oro en USD/oz, 2010-2025
+\item \textbf{Tipo de cambio (Yahoo Finance):} EUR/USD diario, 2010-2025
+\end{itemize}
+
+\section{4. HALLAZGOS PRINCIPALES}
+
+\subsection{Resultado 1: La Gran Divergencia}
+
+El efectivo ha perdido aproximadamente el 25\% de poder adquisitivo en el período, mientras que el oro ha experimentado un rendimiento real superior al 150\%. Esta divergencia masiva evidencia una inflación oculta que el IPC oficial no refleja completamente.
+
+\subsection{Resultado 2: Inflación Oculta Medida en Oro}
+
+Cuando expresamos el salario medio en onzas de oro:
+\begin{itemize}
+\item 2010: Un salario anual compraba 24 onzas
+\item 2025: Un salario anual compra solo 11 onzas (\textbf{-55\%})
+\end{itemize}
+
+El oro revela una pérdida de valor del trabajo mucho más profunda que la indicada por el IPC.
+
+\subsection{Resultado 3: Rendimientos Reales}
+
+Solo el oro ha mantenido rendimientos positivos de forma consistente (más del 70\% de los años). El efectivo mantiene rendimiento negativo constante (-2\% a -3\% anual). Los salarios apenas cubren inflación.
+
+\subsection{Resultado 4: Amplificación de la Desigualdad}
+
+Una pequeña diferencia salarial (3.3x entre deciles) se convierte en una brecha patrimonial de 18x cuando se combina ahorro e inversión en activos que baten la inflación.
+
+\subsection{Resultado 5: Brecha Patrimonial vs. Salarial}
+
+\begin{itemize}
+\item Brecha salarial: Estable en torno a 5x
+\item Brecha patrimonial: Crecimiento exponencial hasta 67.3x en 2025
+\end{itemize}
+
+La verdadera desigualdad reside en la capacidad diferencial de acumular activos reales.
+
+\section{5. CONCLUSIONES}
+
+Este proyecto demuestra que \textbf{los datos cuentan historias que las narrativas oficiales a veces omiten}. Mientras el IPC sugiere estabilidad, el análisis contra activos reales revela una erosión masiva del poder adquisitivo.
+
+\textbf{Conclusión fundamental:} En un sistema de moneda fiduciaria depreciable, la educación financiera y el acceso a activos refugio no son un lujo, sino una necesidad básica para la preservación del trabajo humano.
+
+\section{6. ESTRUCTURA DEL REPOSITORIO}
+
+\begin{verbatim}
+fiat_depreciacion/
+├── datos/              # Raw y Procesados
+├── docs/               # Memoria, enunciado e imágenes
+├── notebooks/          # Jupyter Notebooks
+├── pentaho/            # Transformaciones ETL
+├── scripts/            # Automatización Python
+├── sql/                # Backups de base de datos
+└── docker-compose.yml  # Configuración MySQL
+\end{verbatim}
+
+\newpage
+
+\section*{Referencia}
+
+Para acceder al contenido completo incluyendo:
+\begin{itemize}
+\item Tablas detalladas del modelo de datos
+\item Documentación completa de 12 transformaciones ETL
+\item Explicación detallada de transformación JSON-LD
+\item 5 visualizaciones principales con análisis exhaustivo
+\item Validación de calidad de datos
+\item Casos de uso específicos
+\end{itemize}
+
+Por favor consultar el archivo \texttt{README.md} en el repositorio: \url{https://github.com/JBLOZ/fiat_depreciacion}
+
+\end{document}
