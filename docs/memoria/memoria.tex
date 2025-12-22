@@ -22,6 +22,15 @@
 \usepackage{xcolor}
 \usepackage{float}
 \usepackage{array}
+\usepackage{eurosym}
+\usepackage{amssymb}
+\usepackage{enumitem}
+\setlist{nosep,leftmargin=*}
+
+% Configuración para texttt más pequeño con saltos de línea y guiones
+\usepackage[htt]{hyphenat}  % Permite hyphenation en fuente typewriter
+\let\oldtexttt\texttt  % Guarda el comando original
+\renewcommand{\texttt}[1]{{\footnotesize\oldtexttt{\hyphenchar\font=`\-#1}}}  % Redefine con tamaño pequeño
 
 \definecolor{codegreen}{rgb}{0,0.6,0}
 \definecolor{codegray}{rgb}{0.5,0.5,0.5}
@@ -35,6 +44,11 @@
     keepspaces=true,
     showstringspaces=false,
     tabsize=2
+}
+
+\lstdefinelanguage{json}{
+    morestring=[b]",
+    morestring=[d]'
 }
 
 \icmltitlerunning{Depreciacion del euro y erosion del poder adquisitivo en Espana (2010-2025)}
@@ -56,594 +70,993 @@
 \vskip 0.3in
 ]
 
-\printAffiliationsAndNotice{}
-
 \begin{abstract}
-Este proyecto analiza la erosion del poder adquisitivo en Espana durante el periodo 2010-2025, integrando datos macroeconomicos, salariales y financieros. Mediante la construccion de un almacen de datos (Data Warehouse) con arquitectura en estrella y procesos ETL robustos, se demuestra la divergencia entre la inflacion oficial (IPC) y la depreciacion real del euro frente a activos refugio como el oro. El estudio ofrece una vision critica sobre la ``inflacion oculta'' y la desigualdad patrimonial.
+Durante el periodo 2010-2025, la econom\'ia espa\~nola ha atravesado m\'ultiples crisis que han impactado profundamente en el bienestar de los hogares. El periodo comenz\'o con las secuelas de la crisis financiera de 2008, continu\'o con la crisis de deuda europea (2010-2012), experiment\'o una recuperaci\'on moderada (2014-2019), enfrent\'o el shock de la pandemia COVID-19 (2020-2021), y recientemente ha vivido un repunte inflacionario sin precedentes (2021-2024) motivado por disrupciones en cadenas de suministro y tensiones geopol\'iticas.
 \end{abstract}
 
-% =========================================================================
-% SECCION 1: DEFINICION DEL PROYECTO
-% =========================================================================
-\section{Definicion del proyecto centrado en los datos}
 
-\subsection{Introduccion y contexto economico}
-Durante el periodo 2010-2025, la economía española ha atravesado múltiples crisis que han impactado profundamente en el bienestar de los hogares. El periodo comenzó con las secuelas de la crisis financiera de 2008, continuó con la crisis de deuda europea (2010-2012), experimentó una recuperación moderada (2014-2019), enfrentó el shock de la pandemia COVID-19 (2020-2021), y recientemente ha vivido un repunte inflacionario sin precedentes (2021-2024) motivado por disrupciones en cadenas de suministro y tensiones geopolíticas.
+\section{Definici\'on del proyecto}
 
-Este proyecto surge de una observación crítica: \textbf{las cifras oficiales de inflación (IPC) no capturan completamente la erosión del poder adquisitivo real de los ciudadanos}. Mientras el IPC oficial ha mostrado tasas moderadas en la mayor parte del periodo (con excepciones puntuales), otros indicadores económicos revelan una historia diferente:
+\subsection{Introducci\'on y contexto econ\'omico}
+
+Este proyecto surge de una observaci\'on cr\'itica: \textbf{las cifras oficiales de inflaci\'on (IPC) no capturan completamente la erosi\'on del poder adquisitivo real de los ciudadanos}. Mientras el IPC oficial ha mostrado tasas moderadas en la mayor parte del periodo (con excepciones puntuales), otros indicadores econ\'omicos revelan una historia diferente:
 
 \begin{itemize}
-    \item El \textbf{euro ha perdido valor} frente al dólar estadounidense de forma significativa
-    \item Los \textbf{salarios nominales}han crecido por debajo de la inflación en muchos años
+    \item El \textbf{euro ha perdido valor} frente a otros activos de forma significativa
+    \item Los \textbf{salarios nominales} han crecido por debajo de la inflaci\'on en muchos a\~nos
     \item Los \textbf{activos refugio} como el oro han experimentado revalorizaciones masivas
     \item La \textbf{brecha de desigualdad} se ha ampliado, no solo en ingresos, sino especialmente en patrimonio acumulado
 \end{itemize}
 
-Este fenómeno, que algunos economistas denominan \textbf{``inflacion oculta''}, se manifiesta cuando medimos el bienestar económico no en euros nominales, sino en capacidad real de adquisición de bienes, servicios y activos tangibles.
+Este fen\'omeno, que algunos economistas denominan \textbf{``inflaci\'on oculta''}, se manifiesta cuando medimos el bienestar econ\'omico no en euros nominales, sino en capacidad real de adquisici\'on de bienes, servicios y activos financieros.
 
-\subsection{Problematica y motivacion}
-La problemática central que aborda este proyecto se puede resumir en las siguientes preguntas:
+\subsection{Problem\'atica y motivaci\'on}
 
-Esta pregunta esconde multiples dimensiones:
+La problem\'atica central que aborda este proyecto se puede resumir en la siguiente pregunta: \textbf{?`Qu\'e ha pasado realmente con nuestro poder adquisitivo en los \'ultimos 15 a\~nos?}
+
+Esta pregunta aparentemente simple esconde m\'ultiples dimensiones:
+
 \begin{itemize}
-    \item \textbf{Dimension monetaria:} Cuanto valor ha perdido el euro?
-    \item \textbf{Dimension laboral:} Han crecido los salarios al ritmo de los precios?
-    \item \textbf{Dimension patrimonial:} Que estrategias han protegido mejor el patrimonio?
-    \item \textbf{Dimension social:} Se ha ampliado la brecha entre quienes tienen acceso a activos refugio?
+    \item \textbf{Dimensi\'on monetaria:} ?`Cu\'anto valor ha perdido el euro como unidad de cuenta?
+    \item \textbf{Dimensi\'on laboral:} ?`Han crecido los salarios al mismo ritmo que los precios?
+    \item \textbf{Dimensi\'on patrimonial:} ?`Qu\'e estrategias de ahorro/inversi\'on han protegido mejor el patrimonio?
+    \item \textbf{Dimensi\'on social:} ?`Se ha ampliado la brecha entre quienes tienen acceso a activos refugio y quienes no?
 \end{itemize}
 
-La motivacion es \textbf{cuantificar con datos objetivos} estas dimensiones, integrando datos macroeconomicos (INE, BCE), mercados financieros (bolsa, oro), distribucion salarial por deciles y simulaciones de acumulacion patrimonial.
+La motivaci\'on de este proyecto es \textbf{cuantificar con datos objetivos} estas dimensiones y proporcionar un an\'alisis riguroso que vaya m\'as all\'a de la narrativa oficial. Para ello, integramos:
 
-\subsection{Preguntas de investigacion}
-Para estructurar el analisis, definimos cinco preguntas especificas:
+\begin{itemize}
+    \item Datos macroecon\'omicos oficiales provenientes del INE
+    \item Datos de mercados financieros (bolsa espa\~nola, mercado del oro)
+    \item An\'alisis de distribuci\'on salarial por deciles
+    \item Simulaciones de acumulaci\'on patrimonial seg\'un perfiles socioecon\'omicos
+\end{itemize}
 
-\textbf{Pregunta 1: Evolucion de activos vs. efectivo}\\
-Como ha evolucionado el valor real de 100EUR en diferentes activos (efectivo, oro, IBEX-35, salario medio) durante 2010-2025, ajustado por inflacion?
+\subsection{Preguntas de investigaci\'on}
 
-\textbf{Pregunta 2: Inflacion oculta medida en oro}\\
-Cual es la ``inflacion oculta'' si medimos el salario medio en onzas de oro en lugar de euros nominales?
+Para estructurar el an\'alisis, hemos definido cinco preguntas de investigaci\'on espec\'ificas:
 
-\textbf{Pregunta 3: Rendimientos reales por activo}\\
-Que activos han ofrecido rendimientos reales positivos de forma consistente durante 2010-2025?
+\paragraph{Pregunta 1: Evoluci\'on de activos vs. efectivo}
+\textit{?`C\'omo ha evolucionado el valor real de una inversi\'on inicial de 100\euro{} en diferentes activos (efectivo, oro, IBEX-35, salario medio) durante el periodo 2010-2025, ajustado por inflaci\'on?}
 
-\textbf{Pregunta 4: Impacto de la capacidad de ahorro por decil salarial}\\
-Como afecta la capacidad de ahorro y la estrategia de inversion a la acumulacion de patrimonio segun el decil salarial?
+\textbf{Justificaci\'on:} Esta pregunta nos permite comparar visualmente la preservaci\'on de valor de diferentes estrategias de ahorro. El efectivo representa la ``no-estrategia'' (dejar el dinero sin invertir), mientras que oro y bolsa representan activos refugio tradicionales. El salario medio act\'ua como proxy del poder adquisitivo del trabajador promedio.
 
-\textbf{Pregunta 5: Desigualdad salarial vs. patrimonial}\\
-En que medida la brecha de desigualdad patrimonial supera a la brecha salarial debido al acceso diferencial a activos refugio?
+
+\paragraph{Pregunta 2: Inflaci\'on oculta medida en oro}
+\textit{?`Cu\'al es la ``inflaci\'on oculta'' si medimos el salario medio espa\~nol en onzas de oro en lugar de en euros nominales?}
+
+\textbf{Justificaci\'on:} El oro ha sido hist\'oricamente una unidad de medida de valor estable a largo plazo. Si el salario en euros sube pero en oro baja, significa que el dinero est\'a perdiendo valor m\'as r\'apido que lo que refleja el IPC oficial. Esta pregunta revela la depreciaci\'on real de la moneda fiat.
+
+\paragraph{Pregunta 3: Rendimientos reales por activo}
+\textit{?`Qu\'e activos han ofrecido rendimientos reales positivos (despu\'es de inflaci\'on) de forma consistente durante 2010-2025?}
+
+\textbf{Justificaci\'on:} Para un ciudadano que busca preservar su patrimonio, es crucial saber qu\'e instrumentos financieros han funcionado realmente. Esta pregunta identifica cu\'ales han sido los ``ganadores'' y ``perdedores'' en t\'erminos de rentabilidad real.
+
+\paragraph{Pregunta 4: Impacto de la capacidad de ahorro por decil salarial}
+\textit{?`C\'omo afecta la capacidad de ahorro y la estrategia de inversi\'on a la acumulaci\'on de patrimonio seg\'un el decil salarial al que se pertenece?}
+
+\textbf{Justificaci\'on:} No todos los ciudadanos tienen la misma capacidad de ahorro. Esta pregunta simula escenarios realistas para tres perfiles (clase baja, media y alta) y muestra c\'omo peque\~nas diferencias en ingresos se amplifican dram\'aticamente cuando se combina ahorro con acceso a activos que baten la inflaci\'on.
+
+\paragraph{Pregunta 5: Desigualdad salarial vs. desigualdad patrimonial}
+\textit{?`En qu\'e medida la brecha de desigualdad patrimonial supera a la brecha salarial debido al acceso diferencial a activos refugio?}
+
+\textbf{Justificaci\'on:} Esta pregunta evidencia un efecto multiplicador oculto: aunque dos personas tengan salarios relativamente similares, si una invierte en activos que baten la inflaci\'on y la otra mantiene efectivo, la brecha patrimonial crece exponencialmente. Este es un factor clave en el aumento de la desigualdad en sociedades desarrolladas.
 
 \subsection{Objetivos del proyecto}
 
-\textbf{Objetivos academicos:}
+\subsubsection{Objetivos acad\'emicos (relacionados con la asignatura)}
+
 \begin{enumerate}
-    \item Integracion de fuentes heterogeneas (CSV, APIs)
-    \item Diseno de almacen de datos analitico (modelo estrella)
-    \item Proceso ETL reproducible (Pentaho + Python)
-    \item Transformacion semantica (Schema.org JSON-LD)
-    \item Visualizacion orientada a insight
+    \item \textbf{Integraci\'on de fuentes heterog\'eneas:} Combinar datasets con diferentes formatos (CSV, APIs), frecuencias temporales (anual, mensual, diario) y fuentes (institucionales, mercados)
+    \item \textbf{Dise\~no de almac\'en de datos anal\'itico:} Implementar un modelo estrella que permita consultas temporales complejas
+    \item \textbf{Proceso ETL reproducible:} Desarrollar un pipeline completo usando Pentaho Data Integration y scripts Python
+    \item \textbf{Transformaci\'on sem\'antica:} Convertir los datos a formato JSON-LD usando vocabulario schema.org
+    \item \textbf{Visualizaci\'on orientada a insight:} Generar gr\'aficos que respondan directamente a las preguntas de investigaci\'on
 \end{enumerate}
 
-\textbf{Objetivos tecnicos:}
+\subsubsection{Objetivos t\'ecnicos}
+
 \begin{enumerate}
-    \item Automatizacion de descarga de datos (\texttt{descarga\_datasets.py})
-    \item Limpieza robusta de datos
-    \item Base de datos contenedorizada (Docker MySQL)
-    \item Modelo dimensional escalable
-    \item Exportacion de datos procesados
+    \item \textbf{Automatizaci\'on de descarga de datos:} Script \texttt{descarga\_datasets.py} que obtiene datos financieros desde Yahoo Finance (oro, EUR/USD, IBEX-35)
+    \item \textbf{Limpieza robusta de datos:} Gestionar valores faltantes, outliers, inconsistencias de formato y problemas de encoding (UTF-8)
+    \item \textbf{Base de datos contenedorizada:} Desplegar MySQL usando Docker Compose para garantizar reproducibilidad en cualquier entorno
+    \item \textbf{Modelo dimensional escalable:} Dise\~no que permita a\~nadir nuevos indicadores o periodos temporales sin modificar la estructura
+    \item \textbf{Exportaci\'on de datos procesados:} Facilitar el acceso a los datos limpios para an\'alisis externos
 \end{enumerate}
 
-\textbf{Objetivos analiticos:}
+\subsubsection{Objetivos anal\'iticos}
+
 \begin{enumerate}
-    \item Cuantificar la inflacion oculta
-    \item Identificar activos refugio efectivos
-    \item Visualizar la desigualdad patrimonial
-    \item Simular escenarios realistas
+    \item \textbf{Cuantificar la inflaci\'on oculta:} Demostrar num\'ericamente la diferencia entre IPC oficial y depreciaci\'on real de la moneda
+    \item \textbf{Identificar activos refugio efectivos:} Determinar qu\'e instrumentos han protegido mejor el patrimonio en el periodo
+    \item \textbf{Visualizar la desigualdad patrimonial:} Mostrar c\'omo el acceso a activos amplifica las diferencias econ\'omicas
+    \item \textbf{Simular escenarios realistas:} Proyectar la evoluci\'on patrimonial de diferentes perfiles socioecon\'omicos
 \end{enumerate}
 
 \subsection{Casos de uso}
 
-\textbf{Caso 1: Analisis de portafolios para particulares}\\
-Actor: Ciudadano con capacidad de ahorro. Objetivo: Decidir como distribuir ahorros.
+\paragraph{Caso de uso 1: An\'alisis de portafolios para particulares}
+\textbf{Actor:} Ciudadano con capacidad de ahorro que busca preservar su patrimonio\\
+\textbf{Objetivo:} Decidir c\'omo distribuir sus ahorros entre diferentes activos\\
+\textbf{Valor aportado:} Las visualizaciones de rendimientos reales permiten tomar decisiones informadas basadas en datos hist\'oricos
 
-\textbf{Caso 2: Investigacion economica}\\
-Actor: Economista o investigador. Objetivo: Analizar evolucion de desigualdad patrimonial.
+\paragraph{Caso de uso 2: Investigaci\'on econ\'omica}
+\textbf{Actor:} Economista o investigador social\\
+\textbf{Objetivo:} Analizar la evoluci\'on de la desigualdad patrimonial en Espa\~na\\
+\textbf{Valor aportado:} El almac\'en de datos integra m\'ultiples indicadores que permiten estudiar correlaciones entre salarios, inflaci\'on y patrimonio
 
-\textbf{Caso 3: Educacion financiera}\\
-Actor: Docente de economia. Objetivo: Explicar inflacion e inversion con datos reales.
+\paragraph{Caso de uso 3: Educaci\'on financiera}
+\textbf{Actor:} Docente de econom\'ia o finanzas personales\\
+\textbf{Objetivo:} Explicar conceptos como inflaci\'on, inversi\'on y desigualdad con datos reales\\
+\textbf{Valor aportado:} Las visualizaciones son did\'acticas y basadas en datos oficiales, ideales para contextos educativos
 
-\textbf{Caso 4: Auditoria de politicas publicas}\\
-Actor: Analista de politicas. Objetivo: Evaluar efectividad de politicas salariales.
+\paragraph{Caso de uso 4: Auditor\'ia de pol\'iticas p\'ublicas}
+\textbf{Actor:} Analista de pol\'iticas econ\'omicas\\
+\textbf{Objetivo:} Evaluar la efectividad de las pol\'iticas salariales y monetarias en preservar el poder adquisitivo\\
+\textbf{Valor aportado:} El proyecto proporciona m\'etricas objetivas sobre la erosi\'on del poder adquisitivo que complementan estad\'isticas oficiales
 
-% =========================================================================
-% SECCION 2: ANALISIS DE NECESIDADES DE DATOS
-% =========================================================================
+
 \section{Analizar y evaluar necesidades de datos}
 
-\subsection{Metodologia de seleccion de datos}
-La seleccion siguio tres fases:
+\subsection{Metodolog\'ia de selecci\'on de datos}
 
-\textbf{Fase 1: Identificacion de dominios clave}
+La selecci\'on de datasets se ha realizado siguiendo un proceso estructurado de tres fases:
+
+\paragraph{Fase 1: Identificaci\'on de dominios clave}
+Bas\'andonos en las preguntas de investigaci\'on, identificamos cinco dominios de datos necesarios:
 \begin{enumerate}
-    \item Precios y inflacion $\to$ IPC del INE
-    \item Mercado laboral $\to$ Salarios y empleo del INE
-    \item Mercados financieros $\to$ IBEX-35 (Yahoo Finance)
-    \item Activos refugio $\to$ Oro (Yahoo Finance)
-    \item Tipos de cambio $\to$ EUR/USD (Yahoo Finance)
+    \item \textbf{Precios y inflaci\'on} $\rightarrow$ IPC del INE
+    \item \textbf{Mercado laboral} $\rightarrow$ Salarios y empleo del INE
+    \item \textbf{Mercados financieros} $\rightarrow$ IBEX-35 (Yahoo Finance)
+    \item \textbf{Activos refugio} $\rightarrow$ Oro (Yahoo Finance)
+    \item \textbf{Tipos de cambio} $\rightarrow$ EUR/USD (Yahoo Finance)
 \end{enumerate}
 
-\textbf{Fase 2: Evaluacion de fuentes}\\
-Criterios: oficialidad, cobertura temporal (2010-2025), granularidad, accesibilidad, formato estructurado.
-
-\textbf{Fase 3: Validacion cruzada}\\
-Contraste entre fuentes (ej. EUR/USD de Yahoo vs BCE).
-
-\subsection{Datasets seleccionados}
-
-\textbf{Dataset 1: IPC (Indice de Precios al Consumo)}\\
-Fuente: INE. Frecuencia: Anual. Cobertura: 2010-2021.\\
-Justificacion: Indicador oficial para deflactar valores nominales.
-
-\textbf{Dataset 2: Salarios}\\
-Fuente: INE (Encuesta Estructura Salarial). Frecuencia: Anual/Mensual.\\
-Justificacion: Principal fuente de ingresos. Permite analizar desigualdad por deciles.
-
-\textbf{Dataset 3: Empleo y desempleo}\\
-Fuente: INE (EPA). Frecuencia: Trimestral.\\
-Justificacion: Contexto laboral (temporalidad, desempleo juvenil).
-
-\textbf{Dataset 4: IBEX-35}\\
-Fuente: Yahoo Finance (\texttt{\^{}IBEX}). Frecuencia: Diaria.\\
-Justificacion: Representa inversion en renta variable espanola.
-
-\textbf{Dataset 5: Oro (precio en USD)}\\
-Fuente: Yahoo Finance (\texttt{GC=F}). Frecuencia: Diaria.\\
-Justificacion: Activo refugio por excelencia. Se convierte a EUR.
-
-\textbf{Dataset 6: Tipo de cambio EUR/USD}\\
-Fuente: Yahoo Finance (\texttt{EURUSD=X}). Frecuencia: Diaria.\\
-Justificacion: Fundamental para convertir precio del oro a euros.
-
-\subsection{Analisis de necesidades de enriquecimiento}
-
+\paragraph{Fase 2: Evaluaci\'on de fuentes disponibles}
+Para cada dominio, evaluamos m\'ultiples fuentes seg\'un criterios de:
 \begin{itemize}
-    \item \textbf{Conversion oro USD $\to$ EUR:} Join temporal diario en Pentaho.
-    \item \textbf{Salarios reales:} Deflactado usando IPC base 2010=100.
-    \item \textbf{Rendimientos reales:} Nominal menos inflacion.
-    \item \textbf{Indicadores de desigualdad:} Brecha salarial (Decil 9 / Decil 1).
+    \item \textbf{Oficialidad:} ?`Es una fuente gubernamental o institucional reconocida?
+    \item \textbf{Cobertura temporal:} ?`Cubre todo el periodo 2010-2025?
+    \item \textbf{Granularidad:} ?`Ofrece el nivel de detalle necesario?
+    \item \textbf{Accesibilidad:} ?`Es posible descargar los datos de forma automatizada o manual?
+    \item \textbf{Formato:} ?`Est\'a en formato estructurado (CSV, API)?
 \end{itemize}
 
-\subsection{Datos no utilizados}
-Se descartaron: Euribor (acceso limitado en deciles bajos), Precio vivienda (alta correlacion con IPC), Criptomonedas (volatilidad extrema), Indices internacionales (foco en Espana).
+\paragraph{Fase 3: Validaci\'on cruzada}
+Cuando fue posible, contrastamos datos de m\'ultiples fuentes para validar su consistencia. Por ejemplo:
+\begin{itemize}
+    \item El tipo de cambio EUR/USD se verific\'o contra datos del BCE
+    \item El IPC se cruz\'o con informes oficiales del INE publicados en PDF
+\end{itemize}
 
-\textbf{Nota:} Todos los datos son reales y oficiales. No fue necesario generar datos sinteticos.
+\subsection{Datasets seleccionados y su justificaci\'on}
 
-% =========================================================================
-% SECCION 3: DISENO DEL ALMACEN DE DATOS
-% =========================================================================
-\section{Diseno conceptual, logico y fisico del almacen de datos}
+A continuaci\'on, detallamos cada conjunto de datos utilizado, su origen, formato y justificaci\'on:
 
-\subsection{Justificacion del modelo en estrella}
-Adoptamos un \textbf{modelo dimensional en estrella} por:
+\paragraph{Dataset 1: IPC (\'Indice de Precios al Consumo)}
+
+\textbf{Fuente:} Instituto Nacional de Estad\'istica (INE)\\
+\textbf{Formato:} CSV descargado manualmente desde INE.es\\
+\textbf{Cobertura temporal:} 2010-2021 (anual)\\
+\textbf{Frecuencia:} Anual\\
+\textbf{Variables clave:} IPC general, IPC por tipos (Tipo 1: Alimentaci\'on, Tipo 4: Vivienda, Tipo 11: Ocio)
+
+\textbf{Justificaci\'on:} El IPC es el indicador oficial de inflaci\'on en Espa\~na. Es fundamental para:
+\begin{itemize}
+    \item Deflactar valores nominales (salarios, inversiones) a t\'erminos reales
+    \item Comparar el coste de la vida entre diferentes a\~nos
+    \item Calcular rendimientos reales de activos financieros
+\end{itemize}
+
+\textbf{Limitaci\'on conocida:} El IPC ha sido criticado por subestimar la inflaci\'on real experimentada por los hogares, especialmente en productos b\'asicos. Sin embargo, al ser la m\'etrica oficial, es la referencia est\'andar para an\'alisis econ\'omicos.
+
+\textbf{Archivos procesados:}
+\begin{itemize}
+    \item \texttt{ipc/ipc\_general\_anual\_2010\_2021.csv}
+    \item \texttt{ipc/ipc\_tipo\_1\_2010\_2021.csv} (Alimentaci\'on)
+    \item \texttt{ipc/ipc\_tipo\_4\_2010\_2021.csv} (Vivienda)
+    \item \texttt{ipc/ipc\_tipo\_11\_2010\_2021.csv} (Ocio y cultura)
+\end{itemize}
+
+
+\paragraph{Dataset 2: Salarios}
+
+\textbf{Fuente:} Instituto Nacional de Estad\'istica (INE) - Encuesta de Estructura Salarial y Encuesta Anual de Coste Laboral\\
+\textbf{Formato:} CSV descargado manualmente desde INE.es\\
+\textbf{Cobertura temporal:} 2010-2023 (anual/mensual seg\'un indicador)\\
+\textbf{Frecuencia:} Anual y mensual\\
+\textbf{Variables clave:}
+\begin{itemize}
+    \item Salario medio anual
+    \item Salario mediano anual
+    \item Salario m\'as frecuente anual
+    \item Salario mensual por deciles (10 grupos de 10\% de poblaci\'on cada uno)
+\end{itemize}
+
+\textbf{Justificaci\'on:} Los salarios son la principal fuente de ingresos de los hogares espa\~noles. Este dataset permite:
+\begin{itemize}
+    \item Analizar la evoluci\'on del poder adquisitivo del trabajador promedio
+    \item Estudiar la desigualdad salarial mediante la distribuci\'on por deciles
+    \item Comparar salarios nominales vs. reales (ajustados por IPC)
+    \item Simular escenarios de ahorro seg\'un nivel salarial
+\end{itemize}
+
+\textbf{Archivos procesados:}
+\begin{itemize}
+    \item \texttt{salarios/salario\_anual\_medio\_mediano\_frecuente\_2010\_2023.csv}
+    \item \texttt{salarios/Salario\_mensual\_deciles\_2010\_2023.csv}
+\end{itemize}
+
+\paragraph{Dataset 3: Empleo y desempleo}
+
+\textbf{Fuente:} Instituto Nacional de Estad\'istica (INE) - Encuesta de Poblaci\'on Activa (EPA)\\
+\textbf{Formato:} CSV descargado manualmente desde INE.es\\
+\textbf{Cobertura temporal:} 2010-2024 (asalariados), 2010-2025 (desempleo)\\
+\textbf{Frecuencia:} Trimestral/anual\\
+\textbf{Variables clave:}
+\begin{itemize}
+    \item Asalariados indefinidos vs. temporales (total)
+    \item Tasa de desempleo por grupos de edad (12 rangos: 16-19, 20-24, ..., 70 y m\'as)
+\end{itemize}
+
+\textbf{Justificaci\'on:} El mercado laboral es un contexto fundamental para interpretar la evoluci\'on salarial:
+\begin{itemize}
+    \item \textbf{Temporalidad:} Un alto porcentaje de contratos temporales reduce el poder de negociaci\'on salarial
+    \item \textbf{Desempleo juvenil:} Afecta desproporcionadamente a ciertos grupos etarios, impactando su capacidad de ahorro a largo plazo
+    \item \textbf{Estabilidad laboral:} La precariedad limita el acceso a financiaci\'on (hipotecas) y activos refugio
+\end{itemize}
+
+\textbf{Archivos procesados:}
+\begin{itemize}
+    \item \texttt{empleo/Asalariados\_indefinidos\_o\_temporales\_2010\_2024.csv}
+    \item \texttt{empleo/Desempleo\_porcentaje\_edades\_2010\_2025.csv}
+\end{itemize}
+
+
+\paragraph{Dataset 4: IBEX-35}
+
+\textbf{Fuente:} Yahoo Finance (ticker \texttt{\^{}IBEX})\\
+\textbf{Formato:} CSV descargado autom\'aticamente v\'ia API de \texttt{yfinance}\\
+\textbf{Cobertura temporal:} 2010-2025 (diaria)\\
+\textbf{Frecuencia:} Diaria (d\'ias h\'abiles)\\
+\textbf{Variables clave:} Precio de cierre, m\'aximo, m\'inimo, volumen, retornos logar\'itmicos
+
+\textbf{Justificaci\'on:} El IBEX-35 es el principal \'indice burs\'atil espa\~nol y representa la inversi\'on en renta variable dom\'estica. Permite:
+\begin{itemize}
+    \item Evaluar la rentabilidad de una cartera de acciones espa\~nolas
+    \item Comparar el rendimiento de la bolsa vs. otros activos refugio
+    \item Identificar periodos de volatilidad (crisis financieras)
+\end{itemize}
+
+\textbf{Archivos procesados:}
+\begin{itemize}
+    \item \texttt{indices\_bursatiles/ibex35\_daily.csv}
+\end{itemize}
+
+\paragraph{Dataset 5: Oro (precio en USD)}
+
+\textbf{Fuente:} Yahoo Finance (ticker \texttt{GC=F} - Gold Futures)\\
+\textbf{Formato:} CSV descargado autom\'aticamente v\'ia API de \texttt{yfinance}\\
+\textbf{Cobertura temporal:} 2010-2025 (diaria)\\
+\textbf{Frecuencia:} Diaria (d\'ias h\'abiles)\\
+\textbf{Variables clave:} Precio de cierre (USD/onza troy), m\'aximo, m\'inimo, volumen
+
+\textbf{Justificaci\'on:} El oro es hist\'oricamente el activo refugio por excelencia. Permite:
+\begin{itemize}
+    \item Medir la depreciaci\'on de las monedas fiat (euro, d\'olar)
+    \item Evaluar si el oro ha protegido el patrimonio durante crisis
+    \item Calcular la ``inflaci\'on oculta'' expresando salarios en onzas de oro
+\end{itemize}
+
+\textbf{Conversi\'on a euros:} El precio original est\'a en USD. Utilizamos el tipo de cambio EUR/USD para convertirlo a EUR/onza, generando un indicador m\'as relevante para el an\'alisis espa\~nol. Esta conversi\'on se realiza en Pentaho mediante la transformaci\'on \texttt{Transformacion\_10.ktr}.
+
+\textbf{Archivos procesados:}
+\begin{itemize}
+    \item \texttt{oro/gold\_price\_usd.csv} (original en USD)
+    \item \texttt{oro/precio\_oro\_euros.csv} (convertido a EUR)
+\end{itemize}
+
+\paragraph{Dataset 6: Tipo de cambio EUR/USD}
+
+\textbf{Fuente:} Yahoo Finance (ticker \texttt{EURUSD=X}) / Banco Central Europeo (validaci\'on)\\
+\textbf{Formato:} CSV descargado autom\'aticamente v\'ia API de \texttt{yfinance}\\
+\textbf{Cobertura temporal:} 2010-2025 (diaria)\\
+\textbf{Frecuencia:} Diaria\\
+\textbf{Variables clave:} Tipo de cambio oficial de cierre
+
+\textbf{Justificaci\'on:} El tipo de cambio EUR/USD es fundamental para:
+\begin{itemize}
+    \item Convertir el precio del oro (cotizado en USD) a euros
+\end{itemize}
+
+\textbf{Archivos procesados:}
+\begin{itemize}
+    \item \texttt{tipo\_cambio/eur\_usd\_exchange\_rate.csv}
+\end{itemize}
+
+
+\subsection{An\'alisis de necesidades de enriquecimiento}
+
+\paragraph{Enriquecimiento 1: Conversi\'on oro USD $\rightarrow$ EUR}
+\textbf{Necesidad:} El oro cotiza en USD, pero analizamos la econom\'ia espa\~nola en EUR\\
+\textbf{Soluci\'on:} Join temporal diario entre precio oro USD y tipo de cambio EUR/USD\\
+\textbf{Implementaci\'on:} Transformaci\'on Pentaho \texttt{Transformacion\_10.ktr}\\
+\textbf{F\'ormula:} \texttt{Precio\_EUR = Precio\_USD / Tipo\_Cambio\_EURUSD}
+
+\paragraph{Enriquecimiento 2: Salarios reales (deflactados)}
+\textbf{Necesidad:} Los salarios nominales no reflejan el poder adquisitivo real\\
+\textbf{Soluci\'on:} Deflactar salarios usando IPC base 2010=100\\
+\textbf{Implementaci\'on:} Calculado en visualizaciones finales (notebook Python)\\
+\textbf{F\'ormula:} \texttt{Salario\_Real = Salario\_Nominal / (IPC/100)}
+
+\paragraph{Enriquecimiento 3: Rendimientos reales}
+\textbf{Necesidad:} Evaluar rentabilidad neta de inflaci\'on\\
+\textbf{Soluci\'on:} Calcular rendimiento nominal y restar inflaci\'on\\
+\textbf{Implementaci\'on:} Calculado en visualizaciones finales\\
+\textbf{F\'ormula:} \texttt{Rendimiento\_Real = Rendimiento\_Nominal - Inflaci\'on}
+
+\paragraph{Enriquecimiento 4: Indicadores de desigualdad}
+\textbf{Necesidad:} Cuantificar la brecha salarial y patrimonial\\
+\textbf{Soluci\'on:} Calcular ratios entre deciles extremos\\
+\textbf{Implementaci\'on:} Calculado en visualizaciones finales\\
+\textbf{F\'ormulas:}
+\begin{itemize}
+    \item \texttt{Brecha\_Salarial = Salario\_Decil\_9 / Salario\_Decil\_1}
+    \item \texttt{Brecha\_Patrimonial = Patrimonio\_Alto / Patrimonio\_Bajo}
+\end{itemize}
+
+\subsection{Datos no utilizados (y por qu\'e)}
+
+Durante la fase de exploraci\'on, evaluamos otros datasets que finalmente no se incluyeron:
+
 \begin{enumerate}
-    \item Orientacion analitica (OLAP)
-    \item Simplicidad de estructura
-    \item Performance en agregaciones
-    \item Escalabilidad
+    \item \textbf{Eur\'ibor (tipos de inter\'es hipotecarios):} Aunque relevante para el coste de la vivienda, la mayor\'ia de los deciles bajos no acceden a hipotecas, limitando su utilidad anal\'itica
+    \item \textbf{Precio de la vivienda:} Altamente correlacionado con IPC-Vivienda, y su inclusi\'on no aportaba informaci\'on adicional significativa
+    \item \textbf{Bitcoin y otras criptomonedas:} Su historia comienza en 2010-2013, con volatilidad extrema. No son representativas de una estrategia de ahorro est\'andar para el ciudadano medio
+    \item \textbf{DAX, FTSE, S\&P 500 (\'indices internacionales):} Aunque interesantes para comparaciones, el enfoque del proyecto es la econom\'ia espa\~nola, y quer\'iamos usar un activo no tan rentable para comprobar si al menos el IBEX-35 consegu\'ia vencer la inflaci\'on.
 \end{enumerate}
 
-Se descartaron: Snowflake (complejidad innecesaria), 3NF (ineficiente para analisis), Data Vault (excesivo para este proyecto).
+\subsection{Justificaci\'on de ausencia de datos ficticios}
 
-\subsection{Diseno conceptual}
-Basado en ``eventos + contexto'':
+\textbf{Todos los datos utilizados en este proyecto son reales y provienen de fuentes oficiales.} No se han generado datos sint\'eticos ni ficticios por las siguientes razones:
+
+\begin{enumerate}
+    \item \textbf{Disponibilidad suficiente:} Las fuentes seleccionadas (INE, Yahoo Finance) proporcionan series hist\'oricas completas para el periodo analizado
+    \item \textbf{Credibilidad del an\'alisis:} El uso de datos reales otorga validez a las conclusiones econ\'omicas extra\'idas
+    \item \textbf{Reproducibilidad:} Cualquier persona puede descargar los mismos datos y verificar los resultados
+    \item \textbf{Requisitos acad\'emicos:} El enunciado permite datos ficticios solo si es justificado, pero no fue necesario
+\end{enumerate}
+
+
+\section{Dise\~no conceptual, l\'ogico y f\'isico del almac\'en de datos}
+
+\subsection{Justificaci\'on del modelo en estrella}
+
+Para este proyecto hemos adoptado un \textbf{modelo dimensional en estrella} (Star Schema) por las siguientes razones:
+
+\begin{enumerate}
+    \item \textbf{Orientaci\'on anal\'itica:} Los modelos en estrella est\'an optimizados para consultas OLAP (Online Analytical Processing), que son el tipo de consultas que realizamos: agregaciones temporales, comparaciones entre indicadores, drill-down por dimensiones
+    \item \textbf{Simplicidad:} La estructura tabla de hechos + dimensiones es intuitiva y f\'acil de entender para usuarios no t\'ecnicos
+    \item \textbf{Performance:} Las consultas de agregaci\'on (SUM, AVG, COUNT) sobre hechos son muy eficientes gracias a la desnormalizaci\'on parcial
+    \item \textbf{Escalabilidad:} Es sencillo a\~nadir nuevos indicadores (filas en la tabla de hechos) o nuevas dimensiones sin modificar la estructura existente
+\end{enumerate}
+
+
+\subsection{Dise\~no conceptual}
+
+El dise\~no conceptual se basa en el paradigma \textbf{``eventos + contexto''}:
+
 \begin{itemize}
-    \item \textbf{Evento (hecho):} Observacion economica (ej. IPC en Enero 2015)
-    \item \textbf{Contexto (dimensiones):} Tiempo, Indicador, Geografia, Fuente, Unidad
+    \item \textbf{Evento (hecho):} Una observaci\'on econ\'omica en un momento del tiempo\\
+    \textit{Ejemplo: ``El IPC general de Espa\~na en enero de 2015 fue 100.85''}
+    \item \textbf{Contexto (dimensiones):} Informaci\'on que describe las circunstancias del evento\\
+    \textit{?`Cu\'ando? $\rightarrow$ Dimensi\'on Tiempo}\\
+    \textit{?`Qu\'e indicador? $\rightarrow$ Dimensi\'on Indicador}\\
+    \textit{?`D\'onde? $\rightarrow$ Dimensi\'on Geograf\'ia}\\
+    \textit{?`De d\'onde viene el dato? $\rightarrow$ Dimensi\'on Fuente}\\
+    \textit{?`En qu\'e unidad? $\rightarrow$ Dimensi\'on Unidad}
 \end{itemize}
+
+\paragraph{Diagrama conceptual (textual)}
 
 \begin{figure}[H]
-    \centering
-    \includegraphics[width=\linewidth]{../conceptual.png}
-    \caption{Diagrama Conceptual del Almacen de Datos.}
-    \label{fig:conceptual}
+\centering
+\includegraphics[width=0.9\linewidth]{../conceptual.png}
+\caption{Diagrama conceptual del modelo de datos}
 \end{figure}
 
-\subsection{Diseno logico}
 
-\subsubsection{Tabla de hechos: hechos\_indicadores\_temporales}
+\subsection{Dise\~no l\'ogico}
 
+El dise\~no l\'ogico traduce el modelo conceptual a estructuras de tablas relacionales. El esquema se compone de \textbf{1 tabla de hechos central} y \textbf{5 tablas de dimensiones} que la rodean, siguiendo el patr\'on cl\'asico de modelo en estrella.
+
+\paragraph{Estructura general del modelo}
+
+La \textbf{tabla de hechos} (\texttt{hechos\_indicadores\_temporales}) almacena cada observaci\'on econ\'omica con su valor num\'erico y referencias (claves for\'aneas) a las cinco dimensiones:
+\begin{itemize}
+    \item \texttt{tiempo\_key} $\rightarrow$ Cu\'ando ocurri\'o la observaci\'on
+    \item \texttt{indicador\_key} $\rightarrow$ Qu\'e indicador se mide (IPC, Salarios, Oro...)
+    \item \texttt{geo\_key} $\rightarrow$ D\'onde se aplica (Espa\~na, Global)
+    \item \texttt{fuente\_key} $\rightarrow$ De d\'onde proviene (INE, Yahoo Finance, BCE)
+    \item \texttt{unit\_key} $\rightarrow$ En qu\'e unidad se expresa (EUR, \%, \'Indice)
+\end{itemize}
+
+Las \textbf{tablas de dimensiones} siguen un patr\'on com\'un: cada una tiene una clave primaria autoincremental (\texttt{*\_key}), un c\'odigo \'unico para identificaci\'on externa, y atributos descriptivos propios de cada dominio.
+
+\paragraph{Ejemplo: Dimensi\'on Indicador (\texttt{dim\_indicador})}
+
+A modo de ejemplo, mostramos la estructura de la dimensi\'on de indicadores, que contiene la informaci\'on de cada variable econ\'omica medida:
+
+
+
+Las dem\'as dimensiones siguen el mismo patr\'on estructural:
+\begin{itemize}
+    \item \textbf{dim\_tiempo:} Almacena fechas con atributos derivados (a\~no, mes, trimestre, nombre del mes) para facilitar agregaciones temporales. Soporta granularidad variable (anual, mensual o diaria).
+    \item \textbf{dim\_geografia:} Define las ubicaciones geogr\'aficas con soporte jer\'arquico (Global $\rightarrow$ Europa $\rightarrow$ Espa\~na). Para este proyecto usamos principalmente ``ESP'' y ``GLOBAL''.
+    \item \textbf{dim\_fuente:} Registra las instituciones proveedoras de datos (INE, BCE, Yahoo Finance) con metadatos de licencia y URL.
+    \item \textbf{dim\_unidad:} Cataloga las unidades de medida (EUR, \%, \'Indice, Puntos) con indicadores de tipo y precisi\'on decimal.
+\end{itemize}
+
+\paragraph{Decisiones de dise\~no clave}
+\begin{itemize}
+    \item Todas las claves primarias son enteros autoincrementales para optimizar JOINs
+    \item Los c\'odigos \'unicos (UNIQUE) permiten identificaci\'on sem\'antica sin depender de claves num\'ericas
+    \item \'Indice compuesto sobre \texttt{(tiempo\_key, indicador\_key)} para acelerar consultas temporales por indicador
+    \item Campos NULL permitidos en atributos opcionales para flexibilidad en granularidad de datos
+\end{itemize}
+
+\textbf{Estimaci\'on de volumen:} Con $\sim$50 indicadores x 15 a\~nos x 12 meses $\approx$ 9,000 registros en la tabla de hechos (puede llegar a 100k filas considerando datos diarios de mercados).
+
+\subsection{Dise\~no f\'isico}
+
+El dise\~no f\'isico implementa el modelo l\'ogico en un SGBD concreto: \textbf{MySQL 8.0}.
+
+\paragraph{Tecnolog\'ias y herramientas utilizadas}
+
+\begin{enumerate}
+    \item \textbf{MySQL Workbench:} Herramienta visual para dise\~nar el modelo ER, generar el script SQL de creaci\'on y exportar diagrama
+    \item \textbf{Docker Compose:} Orquestaci\'on del contenedor MySQL con copias de seguridad
+\end{enumerate}
+
+\paragraph{Configuraci\'on de Docker Compose}
+
+El archivo \texttt{docker-compose.yml} define el servicio MySQL
+
+\textbf{Caracter\'isticas:}
+\begin{itemize}
+    \item Puerto 3306 expuesto para conexiones externas (Pentaho, Python)
+    \item Inicializaci\'on autom\'atica mediante script en \texttt{/docker-entrypoint-initdb.d/}
+    \item Contrase\~na root: \texttt{root} (solo para desarrollo local)
+    \item Base de datos creada autom\'aticamente: \texttt{fiat\_depreciacion\_dw}
+\end{itemize}
+
+\paragraph{Optimizaciones de rendimiento}
+
+\begin{enumerate}
+    \item \textbf{\'Indices estrat\'egicos:}
+    \begin{itemize}
+        \item \'Indice compuesto \texttt{(tiempo\_key, indicador\_key)} en la tabla de hechos $\rightarrow$ Acelera consultas tipo ``?`C\'omo ha evolucionado el indicador X en el tiempo?''
+        \item \'Indices UNIQUE en c\'odigos de dimensiones $\rightarrow$ Evitan duplicados y aceleran b\'usquedas por c\'odigo
+        \item \'Indices en claves for\'aneas $\rightarrow$ Optimizan JOINs
+    \end{itemize}
+    
+    \item \textbf{Tipos de datos optimizados:}
+    \begin{itemize}
+        \item \texttt{DECIMAL(20,6)} para valores econ\'omicos $\rightarrow$ Precisi\'on suficiente sin overhead de DOUBLE
+        \item \texttt{SMALLINT} para a\~nos $\rightarrow$ Ahorra espacio vs. INT
+        \item \texttt{TINYINT} para meses, d\'ias, trimestres $\rightarrow$ Rango 0-255 es suficiente
+    \end{itemize}
+    
+    \item \textbf{Collation UTF-8:}
+    \begin{itemize}
+        \item \texttt{utf8mb4\_unicode\_ci} $\rightarrow$ Soporta caracteres especiales espa\~noles (acentos, \~n) y emojis, pese a haber intentando en todo momento limpiar los csv en UTF-8 normal (es un por si acaso)
+    \end{itemize}
+\end{enumerate}
+
+\paragraph{Estrategia de backups}
+
+\textbf{Backup inicial (\texttt{backup\_completo.sql}):}
+\begin{itemize}
+    \item Generado despu\'es de cargar las primeras transformaciones Pentaho
+    \item Incluye estructura completa + datos de prueba de 2-3 indicadores
+    \item Tama\~no: $\sim$500 KB
+    \item Prop\'osito: Checkpoint para volver atr\'as si algo falla en cargas posteriores
+\end{itemize}
+
+\textbf{Backup final (\texttt{backup\_completo\_v2.sql}):}
+\begin{itemize}
+    \item Generado al finalizar todas las transformaciones
+    \item Incluye estructura + TODOS los datos procesados ($\sim$9,000-100,000 filas en hechos)
+    \item Tama\~no: $\sim$5-10 MB
+    \item Prop\'osito: Estado final reproducible del proyecto
+\end{itemize}
+
+\subsection{Diagrama ER final}
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.95\linewidth]{../diagrama.png}
+\caption{Diagrama ER final del almac\'en de datos}
+\end{figure}
+
+El diagrama ER completo (disponible en \texttt{docs/diagrama.png}) muestra:
+
+\begin{itemize}
+    \item 6 tablas totales (1 hechos + 5 dimensiones)
+    \item Cardinalidad: 1 hecho $\rightarrow$ N dimensiones (relaci\'on 1:N desde dimensiones hacia hechos)
+    \item Claves for\'aneas y sus relaciones (l\'ineas con flechas)
+\end{itemize}
+
+
+\section{Limpieza, transformaci\'on y normalizaci\'on de datos}
+
+Este apartado es el n\'ucleo t\'ecnico del proyecto. Aqu\'i se documentan los \textbf{12 procesos ETL} implementados con Pentaho Data Integration, complementados con scripts Python auxiliares.
+
+\subsection{Visi\'on general del proceso ETL}
+
+El proceso completo se estructura en tres etapas:
+
+\textbf{Etapa 1: Adquisici\'on de datos}
+\begin{itemize}
+    \item \textbf{Manual:} Descarga de microdatos y series temporales desde el portal del INE (IPC, Salarios, Empleo).
+    \item \textbf{Automatizada:} Script \texttt{descarga\_datasets.py} para obtener datos financieros desde Yahoo Finance API.
+    \item \textbf{Salida:} Archivos CSV originales en \texttt{datos/raw/}.
+\end{itemize}
+
+\textbf{Etapa 2: Limpieza individual (11 transformaciones Pentaho)}
+\begin{itemize}
+    \item Scripts: \texttt{Transformacion\_1\_4\_7.ktr}, \texttt{Transformacion\_2.ktr}, etc.
+    \item Prop\'osito: Limpiar cada CSV bruto individualmente.
+    \item Salida: CSVs procesados en \texttt{datos/procesados/}.
+\end{itemize}
+
+\textbf{Etapa 3: Carga en base de datos (1 transformaci\'on Pentaho)}
+\begin{itemize}
+    \item Script: \texttt{data\_base\_in.ktr}
+    \item Prop\'osito: Cargar todos los CSVs limpios en el almac\'en de datos.
+    \item Salida: Base de datos MySQL poblada.
+\end{itemize}
+
+\subsection{Etapa 1: Adquisici\'on de datos}
+
+En esta fase se combinan dos m\'etodos de obtenci\'on de informaci\'on para cubrir tanto indicadores macroecon\'omicos como financieros:
+
+\begin{enumerate}
+    \item \textbf{Descarga Manual (INE):} Los datos relativos a IPC, Salarios y Empleo se han obtenido manualmente desde el portal del Instituto Nacional de Estad\'istica, seleccionando las series temporales y filtros necesarios para el periodo 2010-2025.
+    \item \textbf{Descarga Automatizada (\texttt{descarga\_datasets.py}):} Script en Python que utiliza la librer\'ia \texttt{yfinance} para obtener datos actualizados de mercados:
+    \begin{itemize}
+        \item \texttt{descargar\_eur\_usd()}: Obtiene el tipo de cambio hist\'orico entre el Euro y el D\'olar.
+        \item \texttt{descargar\_oro()}: Descarga la cotizaci\'on de los futuros del oro (USD/oz).
+        \item \texttt{descargar\_ibex35()}: Recupera los valores diarios del \'indice burs\'atil espa\~nol y calcula sus retornos logar\'itmicos.
+    \end{itemize}
+\end{enumerate}
+
+\subsection{Etapa 2: Transformaciones Pentaho individuales}
+
+Se han desarrollado \textbf{11 transformaciones Pentaho (.ktr)} para procesar los datos brutos. El objetivo principal ha sido estandarizar formatos heterog\'eneos en una estructura com\'un lista para el almac\'en de datos.
+
+\paragraph{Procesos generales de limpieza:}
+\begin{enumerate}
+    \item \textbf{Estandarizaci\'on de fechas:} Conversi\'on de formatos anuales (2010), mensuales (2010M01) y trimestrales (2010T1) al est\'andar ISO \texttt{YYYY-MM-DD}.
+    \item \textbf{Normalizaci\'on num\'erica:} Reemplazo de comas por puntos decimales y eliminaci\'on de separadores de miles.
+    \item \textbf{Limpieza de texto:} Eliminaci\'on de espacios en blanco (trim) y caracteres especiales.
+    \item \textbf{Normalizaci\'on de estructura:} Conversi\'on de tablas ``anchas'' (m\'ultiples columnas de datos) a tablas ``largas'' (una sola columna de valor con etiquetas).
+    \item \textbf{Enriquecimiento:} Adici\'on de metadatos constantes (fuente, unidad, pa\'is, indicador).
+\end{enumerate}
+
+A continuaci\'on, se muestran tres ejemplos representativos de estas transformaciones:
+
+\paragraph{Ejemplo 1: Desempleo por edades (Transformaci\'on 3)}
+Esta transformaci\'on soluciona el problema de tener una columna por cada rango de edad, normaliz\'andolas en una sola columna de valores.
+
+\textbf{Estado Inicial (CSV Bruto):}
 \begin{table}[H]
 \centering
 \footnotesize
-\begin{tabular}{|p{2cm}|p{1.5cm}|p{3cm}|}
-\hline
-\textbf{Campo} & \textbf{Tipo} & \textbf{Descripcion} \\
-\hline
-hecho\_key & INT & PK, AUTO\_INCREMENT \\
-tiempo\_key & INT & FK dim\_tiempo \\
-indicador\_key & INT & FK dim\_indicador \\
-geo\_key & INT & FK dim\_geografia \\
-fuente\_key & INT & FK dim\_fuente \\
-unit\_key & INT & FK dim\_unidad \\
-valor & DECIMAL & Valor de la observacion \\
-\hline
-\end{tabular}
-\caption{Tabla de hechos}
-\end{table}
-
-\textbf{Indices:} PK sobre hecho\_key; indice compuesto (tiempo\_key, indicador\_key). Volumen estimado: $\sim$9,000 registros.
-
-\subsubsection{Dimensiones}
-
-\textbf{dim\_tiempo:} tiempo\_key (PK), fecha (DATE), anio (SMALLINT), mes (TINYINT), dia (TINYINT), trimestre (TINYINT), es\_festivo (BOOLEAN).
-
-\textbf{dim\_indicador:} indicador\_key (PK), nombre (VARCHAR), codigo (VARCHAR UNIQUE), categoria (VARCHAR), unidad\_base (VARCHAR).
-
-\textbf{dim\_geografia:} geo\_key (PK), codigo (VARCHAR), nombre (VARCHAR), tipo (VARCHAR).
-
-\textbf{dim\_fuente:} fuente\_key (PK), codigo (VARCHAR), institucion (VARCHAR), url\_base (VARCHAR).
-
-\textbf{dim\_unidad:} unit\_key (PK), simbolo (VARCHAR), nombre\_completo (VARCHAR).
-
-\subsection{Diseno fisico}
-Implementado en \textbf{MySQL 8.0} usando Docker Compose.
-
-\textbf{Optimizaciones:}
-\begin{itemize}
-    \item Indices estrategicos en FKs
-    \item Tipos de datos eficientes (SMALLINT, TINYINT)
-    \item Collation utf8mb4\_unicode\_ci
-\end{itemize}
-
-\textbf{Backups:}
-\begin{itemize}
-    \item backup\_completo.sql: estructura + datos de prueba
-    \item backup\_completo\_v2.sql: todos los datos procesados
-\end{itemize}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\linewidth]{../diagrama.png}
-    \caption{Diagrama ER Final (MySQL Workbench).}
-    \label{fig:diagrama_er}
-\end{figure}
-
-% =========================================================================
-% SECCION 4: LIMPIEZA Y TRANSFORMACION
-% =========================================================================
-\section{Limpieza, transformacion y normalizacion de datos}
-
-Nucleo tecnico del proyecto con \textbf{12 procesos ETL} en Pentaho Data Integration, estructurados en 3 etapas.
-
-\subsection{Etapa 1: Adquisicion de datos}
-\begin{itemize}
-    \item \textbf{Manual:} Descarga desde portal INE (IPC, Salarios, Empleo)
-    \item \textbf{Automatizada:} Script \texttt{descarga\_datasets.py} (yfinance)
-\end{itemize}
-
-El script obtiene: Tipo de cambio EUR/USD, Oro (USD/oz), IBEX-35 (precios diarios y retornos).
-
-\subsection{Etapa 2: Limpieza individual (11 transformaciones)}
-
-Procesos ETL para estandarizar formatos heterogeneos:
-\begin{enumerate}
-    \item Estandarizacion de fechas a ISO YYYY-MM-DD
-    \item Normalizacion numerica (puntos decimales)
-    \item Limpieza de texto (trim, caracteres especiales)
-    \item Normalizacion de estructura (tablas anchas a largas)
-    \item Enriquecimiento con metadatos (fuente, unidad)
-\end{enumerate}
-
-\textbf{Ejemplo 1: Desempleo por edades (Transf. 3)}
-
-\begin{table}[H]
-\centering
-\footnotesize
-\begin{tabular}{|p{1cm}|p{1cm}|p{1cm}|p{1cm}|p{1cm}|}
-\hline
+\begin{tabular*}{0.5\textwidth}{@{\extracolsep{\fill}}ccccc}
+\toprule
 Edad & Unidad & Sexo & Periodo & Total \\
-\hline
-16-19 & \% & Ambos & 2011T4 & 4,4 \\
-\hline
-\end{tabular}
-\caption{Estado inicial CSV bruto}
+\midrule
+16-19 a\~nos & Porcentaje & Ambos sexos & 2011T4 & 4,4 \\
+\bottomrule
+\end{tabular*}
 \end{table}
 
+\textbf{Estado Final (CSV Procesado):}
 \begin{table}[H]
 \centering
 \footnotesize
-\begin{tabular}{|p{2cm}|p{1.5cm}|p{2cm}|}
-\hline
-Fecha & Edad & Desempleo \\
-\hline
+\begin{tabular*}{0.5\textwidth}{@{\extracolsep{\fill}}ccc}
+\toprule
+Fecha & Edad & Porcentaje\_Desempleo \\
+\midrule
 2011-12-31 & 16-19 & 4.40 \\
-\hline
-\end{tabular}
-\caption{Estado final procesado}
+\bottomrule
+\end{tabular*}
 \end{table}
 
-\textbf{Ejemplo 2: IPC General (Transf. 4)}\\
-Corrige formato decimal (coma a punto) y normaliza fechas de 2010M12 a 2010-12-31.
+\paragraph{Ejemplo 2: IPC General (Transformaci\'on 4)}
+Se encarga de limpiar los datos del INE, normalizando la fecha al \'ultimo d\'ia del periodo y corrigiendo el formato decimal.
 
-\textbf{Ejemplo 3: Conversion Oro a EUR (Transf. 10)}\\
-Join de precio USD con tipo de cambio EUR/USD para obtener precio en euros.
+\textbf{Estado Inicial (CSV Bruto):}
+\begin{table}[H]
+\centering
+\footnotesize
+\begin{tabular*}{0.5\textwidth}{@{\extracolsep{\fill}}cccc}
+\toprule
+Grupos ECOICOP & Tipo de dato & Periodo & Total \\
+\midrule
+\'Indice general & \'Indice & 2010M12 & 96,148 \\
+\bottomrule
+\end{tabular*}
+\end{table}
+
+\textbf{Estado Final (CSV Procesado):}
+\begin{table}[H]
+\centering
+\footnotesize
+\begin{tabular*}{0.5\textwidth}{@{\extracolsep{\fill}}ccc}
+\toprule
+Fecha & Indice & Variacion \\
+\midrule
+2010-12-31 & 96.148 & 3.0 \\
+\bottomrule
+\end{tabular*}
+\end{table}
+
+\paragraph{Ejemplo 3: Conversi\'on de Oro a EUR (Transformaci\'on 10)}
+Es una transformaci\'on de integraci\'on que combina el precio del oro en d\'olares con el tipo de cambio diario para obtener el valor en euros.
+
+\textbf{Estado Intermedio (Join de fuentes):}
+\begin{table}[H]
+\centering
+\footnotesize
+\begin{tabular*}{0.5\textwidth}{@{\extracolsep{\fill}}ccc}
+\toprule
+date & price\_usd\_per\_oz & eur\_usd\_rate \\
+\midrule
+2010-01-04 & 1117.70 & 1.4424 \\
+\bottomrule
+\end{tabular*}
+\end{table}
+
+\textbf{Estado Final (CSV Procesado):}
+\begin{table}[H]
+\centering
+\footnotesize
+\begin{tabular*}{0.5\textwidth}{@{\extracolsep{\fill}}cc}
+\toprule
+date & gold\_price\_eur \\
+\midrule
+2010-01-04 & 774.89 \\
+\bottomrule
+\end{tabular*}
+\end{table}
 
 \subsection{Etapa 3: Carga en base de datos}
-Transformacion \texttt{data\_base\_in.ktr}: Orquesta la carga en el modelo estrella realizando Lookups en todas las dimensiones para recuperar/crear claves foraneas antes de insertar en la tabla de hechos.
+
+\paragraph{Transformaci\'on final: \texttt{data\_base\_in.ktr}}
+
+Esta es la transformaci\'on m\'as compleja del proyecto. Su misi\'on es tomar TODOS los CSVs procesados y cargarlos en el modelo estrella de MySQL, gestionando autom\'aticamente las dimensiones.
+
+\textbf{Arquitectura del proceso:}
+
+\begin{enumerate}
+    \item \textbf{Dimension Lookup/Update (FUENTE):} Busca el identificador de la fuente en la dimensi\'on correspondiente o lo inserta si no existe.
+    \item \textbf{Dimension Lookup/Update (UNIDAD):} Recupera o crea la clave \'unica para la unidad de medida (EUR, \%, etc.).
+    \item \textbf{Dimension Lookup/Update (GEOGRAFIA):} Vincula el registro con su ubicaci\'on geogr\'afica (Espa\~na, Global..).
+    \item \textbf{Dimension Lookup/Update (INDICADOR):} Asocia el dato con el indicador espec\'ifico (IPC, Oro, etc.).
+    \item \textbf{Database Lookup (TIEMPO):} Busca la \texttt{tiempo\_key} correspondiente a la fecha del registro en la dimensi\'on tiempo.
+    \item \textbf{Insert / Update (TABLA DE HECHOS):} Inserta la observaci\'on final con todas las claves for\'aneas recuperadas y el valor num\'erico.
+\end{enumerate}
 
 \subsection{Scripts Python auxiliares}
+
+Adem\'as de las transformaciones Pentaho, se han desarrollado diversos scripts Python para automatizar tareas de soporte, limpieza y validaci\'on:
+
 \begin{itemize}
-    \item \texttt{descarga\_datasets.py}: Automatizacion APIs
-    \item \texttt{nuevos\_indicadores.py}: Insercion masiva de indicadores
-    \item \texttt{export\_hechos\_db.py}: Exportacion desnormalizada
-    \item \texttt{arreglo\_limpiar\_salarios.py}: Pre-procesamiento salarios
-    \item \texttt{INFO\_HECHOS.py}: Validacion de calidad
+    \item \textbf{\texttt{descarga\_datasets.py}}: Automatiza la obtenci\'on de datos financieros (Oro, EUR/USD, IBEX-35) mediante la API de Yahoo Finance.
+    \item \textbf{\texttt{nuevos\_indicadores.py}}: Inserta de forma masiva y autom\'atica los registros de indicadores para desempleo (por edades) y salarios (por deciles) en la dimensi\'on correspondiente.
+    \item \textbf{\texttt{export\_hechos\_db.py}}: Realiza una consulta desnormalizada a la base de datos y exporta el resultado a un CSV plano para facilitar el an\'alisis en los notebooks.
+    \item \textbf{\texttt{arreglo\_limpiar\_salarios.py}} y \textbf{\texttt{ordenar\_salarios.py}}: Realizan un pre-procesamiento de los datos de salarios del INE para corregir errores de formato que Pentaho no pod\'ia gestionar eficientemente.
+    \item \textbf{\texttt{INFO\_HECHOS.py}} e \textbf{\texttt{INFO\_DIM\_FIJAS.py}}: Generan informes detallados sobre la calidad de los datos cargados, detectando posibles valores nulos o inconsistencias.
+    \item \textbf{\texttt{DATABASE\_INIT.py}}: Script encargado de la configuraci\'on inicial y creaci\'on de los primeros indicadores de las tablas en el servidor MySQL.
 \end{itemize}
 
-\subsection{Gestion de valores faltantes}
+\subsection{Gesti\'on de valores faltantes - Estrategias aplicadas}
 
-\begin{table}[H]
-\centering
-\footnotesize
-\begin{tabular}{|p{2cm}|p{2cm}|p{2.5cm}|}
-\hline
-\textbf{Tipo Dato} & \textbf{Estrategia} & \textbf{Justificacion} \\
-\hline
-IPC (anual) & Eliminar fila & Sin valor no es util \\
-Salarios & Eliminar fila & Mejor no imputar \\
-Mercados & Forward fill & Dias festivos \\
-Desempleo & Eliminar fila & Datos incompletos \\
-Asalariados & Interpolar & Serie continua \\
-\hline
-\end{tabular}
-\caption{Estrategias de valores faltantes}
-\end{table}
+\textbf{Eliminar filas:} Se aplic\'o en IPC, Salarios y Desempleo, ya que un registro sin valor no es \'util y es preferible tener lagunas a valores imputados incorrectamente.
 
-\textbf{No se uso:} Backward fill (usar futuro para rellenar pasado es erroneo) ni imputacion por media (suavizaria volatilidad real).
+\textbf{Forward fill:} Para datos de mercados (IBEX-35, Oro, EUR/USD), se us\'o el \'ultimo valor conocido en festivos y fines de semana, ya que los mercados est\'an cerrados.
+
+\textbf{Interpolaci\'on lineal:} Solo en la serie de Asalariados (trimestral), por ser una serie continua donde la interpolaci\'on es razonable.
+
+\textbf{No se us\'o} interpolaci\'on hacia atr\'as (backward fill) porque usar valores futuros es conceptualmente err\'oneo, ni imputaci\'on por media/mediana porque podr\'ia suavizar artificialmente la volatilidad real.
 
 \subsection{Tratamiento de outliers}
-Se analizaron valores extremos. No se eliminaron registros, ya que los picos (desempleo 2013, COVID-19, inflacion 2021) corresponden a eventos economicos reales.
 
-\subsection{Validacion de calidad de datos}
-
+Se analizaron valores extremos mediante estad\'isticas descriptivas y desviaciones est\'andar. No se eliminaron registros, ya que los picos detectados (desempleo 2013, COVID-19 en IBEX-35, inflaci\'on 2021) corresponden a eventos econ\'omicos reales y necesarios para el an\'alisis.
 \begin{table}[H]
 \centering
 \footnotesize
-\begin{tabular}{|p{2.5cm}|p{2cm}|p{2cm}|}
-\hline
-\textbf{Metrica} & \textbf{Objetivo} & \textbf{Resultado} \\
-\hline
-Completitud & $>$95\% & 98.2\% \\
-Consistencia & Sin gaps $>$1 ano & Gap max: 3 meses \\
-Integridad & 100\% FKs & 100\% \\
-Unicidad & Sin duplicados & 0 duplicados \\
-Formato & ISO 8601 & 100\% \\
-Rango valido & Limites ok & 100\% \\
-\hline
+\begin{tabular}{l}
+\toprule
+\textbf{M\'etrica: Objetivo $\rightarrow$ Resultado} \\
+\midrule
+Completitud: $>$95\% no nulos $\rightarrow$ \checkmark{} 98.2\% \\
+Consistencia: Sin gaps $>$1 a\~no $\rightarrow$ \checkmark{} Gap m\'ax: 3 meses \\
+Integridad ref.: 100\% dimensiones v\'alidas $\rightarrow$ \checkmark{} 100\% \\
+Unicidad: Sin duplicados $\rightarrow$ \checkmark{} 0 duplicados \\
+Formato: Fechas ISO 8601 $\rightarrow$ \checkmark{} 100\% \\
+Rango: L\'imites razonables $\rightarrow$ \checkmark{} 100\% \\
+\bottomrule
 \end{tabular}
-\caption{Validacion de calidad}
+\caption{Validaci\'on de calidad de datos}
 \end{table}
+\subsection{Job de orquestación Pentaho}
 
-% =========================================================================
-% SECCION 5: SCHEMA.ORG
-% =========================================================================
-\section{Transformacion segun schema.org}
+Aunque tradicionalmente se recomienda crear un job de Pentaho que orqueste todas las transformaciones en secuencia, en nuestro caso hemos adoptado una estrategia alternativa basada en ejecuciones independientes.
 
-\subsection{Transformacion semantica}
-Se transformaron los datos a \textbf{JSON-LD} usando el vocabulario \textbf{Schema.org} para interoperabilidad e indexacion.
+Hemos optado por ejecutar cada transformación de forma individual por los siguientes motivos:
 
-\subsection{Clases utilizadas}
+\begin{itemize}
+    \item Habría requerido modificar todas las 12 transformaciones para usar las mismas rutas en CSV input y output, y no podriamos haber trabajado todos en paralelo.
+    \item La estructura de carpetas (`datos/raw/` y `datos/procesados/`) ya garantiza organización clara.
+\end{itemize}
 
-\begin{table}[H]
-\centering
-\footnotesize
-\begin{tabular}{|p{2.5cm}|p{4cm}|}
-\hline
-\textbf{Clase} & \textbf{Propiedades clave} \\
-\hline
-Dataset & name, creator, temporalCoverage \\
-Observation & observedNode, measuredValue, observationDate \\
-Organization & name, url, identifier \\
-Place & name, identifier \\
-QuantitativeValue & value, unitText \\
-\hline
-\end{tabular}
-\caption{Clases Schema.org utilizadas}
-\end{table}
 
-\textbf{Ejemplo de observacion (IPC):}
-\begin{lstlisting}
+
+
+
+\section{Transformaci\'on seg\'un Schema.org}
+
+\subsection{Introducci\'on a la transformaci\'on sem\'antica}
+
+Se transformaron los datos a formato \textbf{JSON-LD} utilizando el vocabulario \textbf{Schema.org} para garantizar la interoperabilidad y facilitar su indexaci\'on por motores de b\'usqueda.
+
+\subsection{Clases de Schema.org utilizadas}
+
+Se utilizaron las siguientes clases de Schema.org:
+\begin{itemize}
+    \item \textbf{\texttt{Dataset}:} Representa el conjunto de datos publicado, con propiedades como \texttt{name}, \texttt{creator}, \texttt{temporalCoverage} y \texttt{spatialCoverage}.
+    \item \textbf{\texttt{Observation}:} Cada medida de un indicador en un momento dado, con \texttt{observedNode}, \texttt{measuredValue} y \texttt{observationDate}.
+    \item \textbf{\texttt{Organization}:} Las fuentes de datos (INE, BCE, Yahoo Finance), usando \texttt{name}, \texttt{url} e \texttt{identifier}.
+    \item \textbf{\texttt{Place}:} Ubicaciones geogr\'aficas con \texttt{name} e \texttt{identifier}.
+    \item \textbf{\texttt{QuantitativeValue}:} Valores num\'ericos con su unidad, mediante \texttt{value} y \texttt{unitText}.
+\end{itemize}
+
+\textbf{Ejemplo de observaci\'on sem\'antica (IPC):}
+\begin{lstlisting}[language=json]
 {
+  "@context": "https://schema.org",
   "@type": "Observation",
-  "observedNode": {"name": "IPC General"},
-  "measuredValue": {"value": 100.85},
+  "@id": "obs-ipc-2015-01-01",
+  "observedNode": {
+    "@type": "DefinedTerm",
+    "name": "IPC General",
+    "identifier": "IPC_GENERAL"
+  },
+  "measuredValue": {
+    "@type": "QuantitativeValue",
+    "value": 100.85,
+    "unitText": "Indice base 100"
+  },
   "observationDate": "2015-01-01"
 }
 \end{lstlisting}
 
-\subsection{Proceso}
-Notebook \texttt{schema\_org.ipynb}: Extraccion de hechos $\to$ Mapeo a JSON-LD $\to$ Exportacion. Validado con JSON-LD Playground y enriquecido con enlaces a Wikidata.
+\subsection{Proceso de transformaci\'on}
 
-\subsection{Casos de uso semanticos}
-\begin{itemize}
-    \item Busqueda semantica: Indexacion automatica por buscadores
-    \item Interoperabilidad: Integracion con otros datasets
-    \item Knowledge Graphs: Base para grafos de conocimiento
-\end{itemize}
-
-% =========================================================================
-% SECCION 6: VISUALIZACION
-% =========================================================================
-\section{Visualizacion}
-
-Graficas generadas en Python (\texttt{visualizaciones\_finales.ipynb}) a 300 DPI, extrayendo datos del JSON-LD generado.
-
-\subsection{V1: La Gran Divergencia - Euro vs Activos Reales}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\linewidth]{../img/V1_divergencia_euro_activos.png}
-    \caption{Evolucion del valor real de 100EUR invertidos en 2010.}
-    \label{fig:v1}
-\end{figure}
-
-\textbf{Metodologia:} Se normalizaron los precios a indice base 100 (2010) y se deflactaron usando IPC acumulado.
-
-\textbf{Hallazgos:}
-\begin{itemize}
-    \item \textbf{Efectivo:} Perdida del 25\% de poder adquisitivo
-    \item \textbf{Oro:} Rendimiento real del +150\%
-    \item \textbf{IBEX-35:} Volatilidad alta, protege de inflacion
-    \item \textbf{Salario Medio:} Apenas mantiene poder adquisitivo (+5\% en 13 anos)
-\end{itemize}
-
-\subsection{V2: Inflacion oculta medida en oro}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\linewidth]{../img/V2_salario_en_oro.png}
-    \caption{Salario medio espanol medido en onzas de oro (2010-2023).}
-    \label{fig:v2}
-\end{figure}
-
-\textbf{Hallazgos:}
-\begin{itemize}
-    \item \textbf{Poder adquisitivo:} En 2010 un salario compraba 24 oz; en 2025 solo 11 oz (\textbf{-55\%})
-    \item \textbf{Esfuerzo laboral:} En 2010 se requerian 74h para 1 oz; en 2023 se necesitan 160h (\textbf{+55\%})
-\end{itemize}
-
-\subsection{V3: Heatmap de Rendimientos Reales}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\linewidth]{../img/V3_heatmap_rendimientos_reales.png}
-    \caption{Mapa de calor de rendimientos reales anuales.}
-    \label{fig:v3}
-\end{figure}
-
-\textbf{Hallazgos:}
-\begin{itemize}
-    \item \textbf{Efectivo:} Rendimiento real negativo constante (-2\% a -3\% anual)
-    \item \textbf{Oro:} Rendimientos positivos en mas del 70\% de los anos
-    \item \textbf{IBEX-35:} Alta volatilidad, alternancia de ganancias y perdidas
-\end{itemize}
-
-\subsection{V4-V5: Simulacion de patrimonio y desigualdad}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\linewidth]{../img/V4_simulacion_patrimonio.png}
-    \caption{Simulacion de acumulacion de patrimonio por clase social.}
-    \label{fig:v4}
-\end{figure}
-
-\textbf{Metodologia:} Tres perfiles (Clase Baja, Media, Alta) con diferentes tasas de ahorro (5\%, 15\%, 30\%) y estrategias de inversion.
-
-\textbf{Hallazgos:}
-\begin{itemize}
-    \item \textbf{Clase Baja:} 6kEUR acumulados (efectivo)
-    \item \textbf{Clase Media:} 77kEUR acumulados (mixta)
-    \item \textbf{Clase Alta:} 349kEUR acumulados (optimizada con oro)
-\end{itemize}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\linewidth]{../img/V5_brecha_desigualdad_patrimonial.png}
-    \caption{Evolucion de la brecha de desigualdad patrimonial.}
-    \label{fig:v5}
-\end{figure}
-
-\textbf{Conclusion:} La brecha salarial se mantiene estable en 5x, pero la brecha patrimonial crece exponencialmente hasta alcanzar \textbf{67.3x} en 2025.
-
-% =========================================================================
-% SECCION 7: CONCLUSIONES
-% =========================================================================
-\section{Conclusiones y resultados}
-
-\subsection{Respuestas a las preguntas de investigacion}
-
-\begin{table}[H]
-\centering
-\footnotesize
-\begin{tabular}{|p{0.8cm}|p{2.8cm}|p{2.8cm}|}
-\hline
-\textbf{Preg.} & \textbf{Hallazgo} & \textbf{Implicacion} \\
-\hline
-1 & Efectivo -25\%; Oro +150\% & Efectivo = perdida garantizada \\
-2 & Poder adquisitivo oro -39\% & IPC subestima erosion real \\
-3 & Solo oro mantuvo rendimientos positivos & Oro es el activo mas fiable \\
-4 & Diferencia 3.3x $\to$ 18x patrimonio & Ahorro e inversion son clave \\
-5 & Brecha patrimonial crece 5.5x mas rapido & Solo salarios es insuficiente \\
-\hline
-\end{tabular}
-\caption{Respuestas a preguntas de investigacion}
-\end{table}
-
-\subsection{Hallazgos principales}
-\begin{itemize}
-    \item \textbf{Inflacion Oculta:} Verificada mediante comparacion con activos tangibles
-    \item \textbf{Estancamiento Salarial:} Los salarios reales solo crecieron un 5\% en 13 anos
-    \item \textbf{Trampa de Pobreza:} La baja capacidad de ahorro condena a los deciles bajos
-\end{itemize}
-
-\subsection{Limitaciones}
-\begin{itemize}
-    \item \textbf{Temporalidad:} Periodo de 13 anos influenciado por crisis excepcionales
-    \item \textbf{Activos:} No se incluye el sector inmobiliario
-    \item \textbf{Costes:} No se consideran impuestos ni comisiones en las simulaciones
-\end{itemize}
-
-\subsection{Conclusion final}
-Este proyecto demuestra que \textbf{los datos cuentan historias que las narrativas oficiales a veces omiten}. Mientras el IPC sugiere estabilidad, el analisis contra activos reales revela una erosion masiva del poder adquisitivo. La conclusion es clara: en un sistema de moneda fiduciaria depreciable, la educacion financiera y el acceso a activos refugio no son un lujo, sino una necesidad basica.
-
-% =========================================================================
-% SECCION 8: REPOSITORIO
-% =========================================================================
-\section{Repositorio y guia de uso}
-
-\textbf{Repositorio:} \url{https://github.com/JBLOZ/fiat_depreciacion}
-
-\subsection{Estructura del proyecto}
-\begin{lstlisting}
-fiat_depreciacion/
-  datos/         # Raw y Procesados
-  docs/          # Memoria e imagenes
-  notebooks/     # Jupyter Notebooks
-  pentajo/       # Transformaciones ETL
-  scripts/       # Automatizacion Python
-  sql/           # Backups y scripts DB
-  docker-compose.yml
-\end{lstlisting}
-
-\subsection{Instrucciones de reproduccion}
+La transformaci\'on se realiz\'o mediante el notebook \texttt{schema\_org.ipynb} siguiendo estos pasos:
 \begin{enumerate}
-    \item Clonar repositorio
-    \item Ejecutar \texttt{docker-compose up -d}
-    \item Ejecutar scripts de descarga y transformaciones Pentaho
-    \item Consultar notebooks para analisis y visualizacion
+    \item \textbf{Extracci\'on:} Uso del archivo \texttt{export\_hechos\_db.py} para la generaci\'on de un csv con todos los hechos.
+    \item \textbf{Extracci\'on:} Obtenci\'on de metadatos de dimensiones (fuentes, indicadores, geograf\'ias).
+    \item \textbf{Mapeo:} Conversi\'on de registros relacionales a objetos JSON-LD.
+    \item \textbf{Muestreo:} Generaci\'on de una muestra representativa de observaciones.
+    \item \textbf{Exportaci\'on:} Generaci\'on del archivo \texttt{output\_schema.jsonld}.
 \end{enumerate}
 
-\subsection{Ficheros procesados principales}
+\subsection{Validaci\'on y Enriquecimiento}
+
 \begin{itemize}
-    \item \texttt{datos/procesados/IBEX35\_daily/}
-    \item \texttt{datos/procesados/ORO/Gold\_EUR\_daily.csv}
-    \item \texttt{datos/procesados/Salarios/}
-    \item \texttt{datos/procesados/IPC/}
-    \item \texttt{datos/procesados/output\_schema.jsonld}
+    \item \textbf{Validaci\'on:} Se verific\'o la sintaxis JSON y la estructura sem\'antica mediante el \textit{JSON-LD Playground}, confirmando que todos los tipos y propiedades cumplen el est\'andar.
+    \item \textbf{Enriquecimiento:} Se identificaron enlaces a repositorios externos como \textbf{Wikidata} (ej: Espa\~na $\rightarrow$ \texttt{Q29}, INE $\rightarrow$ \texttt{Q795277}) para futuras implementaciones de \textit{Linked Data}.
 \end{itemize}
 
-\subsection{Comandos clave}
+\subsection{Casos de uso}
+
+\begin{itemize}
+    \item \textbf{B\'usqueda sem\'antica:} Indexaci\'on autom\'atica por buscadores.
+    \item \textbf{Interoperabilidad:} Integraci\'on directa con otros datasets y bases de datos de grafos.
+    \item \textbf{Knowledge Graphs:} Base para la creaci\'on de grafos de conocimiento econ\'omicos.
+\end{itemize}
+
+
+\section{Visualizaci\'on}
+
+\subsection{Herramientas y Estilo}
+
+Las visualizaciones se encuentran en el notebook de \texttt{notebooks/visualizaciones\_finales.ipynb} Las gr\'aficas se dise\~naron con una resoluci\'on de {300 DPI} y una paleta de colores apta para garantizar la claridad en la presentaci\'on de resultados.
+
+\subsection{Proceso de generaci\'on}
+
+El flujo de trabajo para cada visualizaci\'on consisti\'o en:
+\begin{enumerate}
+    \item \textbf{Carga:} Extracci\'on de datos desnormalizados desde \texttt{datos/procesados/output\_schema.jsonld} usando los datos de schema anteriormente generados.
+    \item \textbf{Procesamiento:} C\'alculo de \'indices base 100, ajustes por inflaci\'on (IPC) y normalizaci\'on de series temporales.
+    \item \textbf{Renderizado:} Generaci\'on de gr\'aficos (l\'ineas, barras, heatmaps) con anotaciones de eventos econ\'omicos clave (COVID-19, crisis de deuda).
+    \item \textbf{Exportaci\'on:} Almacenamiento en formato PNG en \texttt{docs/img/}.
+\end{enumerate}
+
+\subsection{Visualizaci\'on 1: La Gran Divergencia - Euro vs Activos Reales}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.95\linewidth]{../img/V1_divergencia_euro_activos.png}
+\caption{La Gran Divergencia - Euro vs Activos Reales}
+\end{figure}
+
+\textbf{Pregunta:} \textit{?`C\'omo ha evolucionado el valor real de 100\euro{} en diferentes activos ajustados por inflaci\'on?}
+
+\textbf{Metodolog\'ia:} Se normalizaron los precios de Oro, IBEX-35 y Salario Medio a un \'indice base 100 (a\~no 2010) y se deflactaron utilizando el IPC acumulado.
+
+\textbf{Hallazgos clave:}
+\begin{enumerate}
+    \item \textbf{Efectivo:} P\'erdida del $\sim$25\% de poder adquisitivo. 100\euro{} de 2010 equivalen a $\sim$75\euro{} en 2023.
+    \item \textbf{Oro:} Rendimiento real del +150\%. Es el activo que mejor ha protegido el valor.
+    \item \textbf{IBEX-35:} Volatilidad alta sin retornos, protege de la inflacci\'on pero es un activo flojo.
+    \item \textbf{Salario Medio:} Apenas mantiene el poder adquisitivo.
+\end{enumerate}
+
+\textbf{Conclusi\'on:} Existe una divergencia masiva entre el efectivo y los activos reales, evidenciando una inflaci\'on oculta que el IPC no refleja totalmente.
+
+\subsection{Visualizaci\'on 2: El Salario Medido en Oro (Inflaci\'on Oculta)}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.95\linewidth]{../img/V2_salario_en_oro.png}
+\caption{El Salario Medido en Oro (Inflaci\'on Oculta)}
+\end{figure}
+
+\textbf{Pregunta:} \textit{?`Cu\'al es la ``inflaci\'on oculta'' si medimos el salario medio espa\~nol en onzas de oro?}
+
+\textbf{Metodolog\'ia:} Se calcul\'o cu\'antas onzas de oro se pueden comprar con el salario medio anual y cu\'antas horas de trabajo se requieren para adquirir una onza.
+
+\textbf{Hallazgos clave:}
+\begin{enumerate}
+    \item \textbf{Poder adquisitivo:} En 2010 un salario compraba 24 oz; en 2025 solo 11 oz (\textbf{-55\%}).
+    \item \textbf{Esfuerzo laboral:} En 2010 se requer\'ian 74h para 1 oz; en 2023 se necesitan 160h (\textbf{+55\%}).
+\end{enumerate}
+
+\textbf{Conclusi\'on:} El oro revela una p\'erdida de valor del trabajo mucho m\'as profunda que la indicada por el IPC oficial.
+
+\subsection{Visualizaci\'on 3: Heatmap de Rendimientos Reales Anuales}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{../img/V3_heatmap_rendimientos_reales.png}
+\caption{Heatmap de Rendimientos Reales Anuales}
+\end{figure}
+
+\textbf{Pregunta:} \textit{?`Qu\'e activos han ofrecido rendimientos reales positivos de forma consistente?}
+
+\textbf{Metodolog\'ia:} Se calcul\'o el rendimiento porcentual anual de cada activo (Efectivo, Salario, Oro, IBEX-35) restando la inflaci\'on anual (IPC) de cada periodo.
+
+\textbf{Hallazgos clave:}
+\begin{enumerate}
+    \item \textbf{Efectivo:} Rendimiento real negativo constante (-2\% a -3\% anual).
+    \item \textbf{Oro:} Activo m\'as consistente con rendimientos positivos en m\'as del 70\% de los a\~nos analizados.
+    \item \textbf{IBEX-35:} Alta volatilidad, con alternancia de a\~nos de grandes ganancias y p\'erdidas.
+    \item \textbf{Salario:} Rendimiento real cercano a cero, confirmando que los aumentos salariales solo cubren la inflaci\'on.
+\end{enumerate}
+
+\textbf{Conclusi\'on:} Solo el oro ha demostrado ser un refugio consistente contra la p\'erdida de poder adquisitivo a largo plazo. Tanto el salario como el IBEX35 nos cubren del IPC.
+
+\subsection{Visualizaci\'on 4: Simulaci\'on de Patrimonio por Clase Social}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{../img/V4_simulacion_patrimonio.png}
+\caption{Simulaci\'on de Patrimonio por Clase Social}
+\end{figure}
+
+\textbf{Pregunta:} \textit{?`C\'omo afecta la capacidad de ahorro y la inversi\'on a la acumulaci\'on de riqueza seg\'un el nivel salarial?}
+
+\textbf{Metodolog\'ia:} Se simularon tres perfiles (Clase Baja, Media y Alta) con diferentes salarios iniciales, tasas de ahorro (5\%, 15\%, 30\%) y estrategias de inversi\'on (Efectivo, Mixta, Optimizada con Oro).
+
+\textbf{Hallazgos clave:}
+\begin{enumerate}
+    \item \textbf{Clase Baja:} Crecimiento m\'inimo (6k\euro{} acumulados) debido a baja capacidad de ahorro y uso exclusivo de efectivo.
+    \item \textbf{Clase Media:} Crecimiento acelerado (77k\euro{} acumulados) gracias al ahorro progresivo.
+    \item \textbf{Clase Alta:} Crecimiento exponencial (349k\euro{} acumulados) gracias al ahorro inteligente y la rentabilidad acumulada.
+\end{enumerate}
+
+\textbf{Conclusi\'on:} La desigualdad patrimonial se amplifica dram\'aticamente por la capacidad de ahorro y el acceso a activos que baten la inflaci\'on.
+
+\subsection{Visualizaci\'on 5: Brechas de Desigualdad (Salarial vs. Patrimonial)}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.95\linewidth]{../img/V5_brecha_desigualdad_salarial.png}
+\caption{Brecha de Desigualdad Salarial}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.95\linewidth]{../img/V5_brecha_desigualdad_patrimonial.png}
+\caption{Brecha de Desigualdad Patrimonial}
+\end{figure}
+
+\textbf{Pregunta:} \textit{?`En qu\'e medida la brecha patrimonial supera a la salarial?}
+
+\textbf{Metodolog\'ia:} Se compar\'o el ratio de desigualdad salarial (Decil 9 / Decil 1) con el ratio de patrimonio acumulado obtenido en la simulaci\'on anterior.
+
+\textbf{Hallazgos clave:}
+\begin{enumerate}
+    \item \textbf{Brecha salarial:} Estable en torno a \textbf{5x}.
+    \item \textbf{Brecha patrimonial:} Crecimiento exponencial hasta alcanzar \textbf{67.3x} en 2025.
+    \item \textbf{Divergencia:} La brecha patrimonial crece en cambio la salarial se mantiene.
+\end{enumerate}
+
+\textbf{Conclusi\'on:} La verdadera desigualdad estructural no reside en los ingresos mensuales, sino en la capacidad diferencial de acumular activos reales a lo largo del tiempo.
+
+
+
+\section{Conclusiones}
+
+\subsection{Respuestas a las preguntas de investigaci\'on}
+
+\paragraph{1. Activos vs. Efectivo}: El efectivo perdi\'o $\sim$25\% de valor real; el oro gan\'o +150\%.\\
+\textbf{Implicaci\'on:} El ahorro en efectivo garantiza p\'erdida de patrimonio.
+
+\paragraph{2. Inflaci\'on en Oro}: El poder adquisitivo en oro cay\'o -39\% (el doble que el IPC).\\
+\textbf{Implicaci\'on:} El IPC oficial subestima la erosi\'on real del valor.
+
+\paragraph{3. Rendimientos Reales}: Solo el oro mantuvo rendimientos positivos constantes ($>$70\% a\~nos).\\
+\textbf{Implicaci\'on:} El oro es el activo m\'as fiable para preservar valor.
+
+\paragraph{4. Capacidad de Ahorro}: Diferencia salarial de 3.3x se convierte en 18x en patrimonio.\\
+\textbf{Implicaci\'on:} El ahorro e inversi\'on son los motores de la movilidad social.
+
+\paragraph{5. Brecha de Desigualdad}: La brecha patrimonial crece 5.5 veces m\'as r\'apido que la salarial.\\
+\textbf{Implicaci\'on:} Centrarse solo en salarios es insuficiente contra la desigualdad.
+
+\subsection{Hallazgos y Limitaciones}
+
+\textbf{Hallazgos Principales:}
+\begin{itemize}
+    \item \textbf{Inflaci\'on Oculta:} Verificada mediante la comparaci\'on con activos tangibles.
+    \item \textbf{Estancamiento Salarial:} Los salarios reales solo crecieron un 5\% en 13 a\~nos.
+    \item \textbf{Trampa de Pobreza:} La baja capacidad de ahorro condena a los deciles bajos a la depreciaci\'on de su trabajo.
+\end{itemize}
+
+\textbf{Limitaciones:}
+\begin{itemize}
+    \item \textbf{Temporalidad:} Periodo de 13 a\~nos (2010-2023) influenciado por crisis excepcionales.
+    \item \textbf{Activos:} No se incluye el sector inmobiliario por su complejidad y falta de datos granulares.
+    \item \textbf{Costes:} No se consideran impuestos ni comisiones de transacci\'on en las simulaciones.
+\end{itemize}
+
+\subsection{Conclusi\'on Final}
+
+Este proyecto demuestra que \textbf{los datos cuentan historias que las narrativas oficiales a veces omiten}. Mientras el IPC sugiere estabilidad, el an\'alisis contra activos reales revela una erosi\'on masiva del poder adquisitivo. La conclusi\'on es clara: en un sistema de moneda fiduciaria depreciable, la educaci\'on financiera y el acceso a activos refugio no son un lujo, sino una necesidad b\'asica para la preservaci\'on del trabajo humano.
+
+\section{Repositorio}
+
+\url{https://github.com/JBLOZ/fiat_depreciacion}   
+
+\subsection{Estructura del Proyecto}
+
 \begin{lstlisting}
-# Levantar base de datos
-docker-compose up -d
-
-# Descargar datasets
-python scripts/descarga_datasets.py
-
-# Exportar hechos
-python scripts/export_hechos_db.py
+fiat_depreciacion/
++-- datos/              # Raw (brutos) y Procesados (limpios + JSON-LD)
++-- docs/               # Memoria, enunciado e imagenes
++-- notebooks/          # Jupyter Notebooks (Visualizaciones y Schema.org)
++-- pentajo/            # Transformaciones ETL (.ktr)
++-- scripts/            # Automatizacion Python (Descarga, DB, Export)
++-- sql/                # Backups y scripts de base de datos
++-- docker-compose.yml  # Entorno MySQL
 \end{lstlisting}
-
-\section*{Agradecimientos}
-Agradecemos al profesorado de la asignatura de Adquisicion y Preparacion de Datos por sus comentarios y soporte tecnico, y a las fuentes de datos (INE, BCE, Yahoo Finance) por el acceso publico a series temporales.
 
 \end{document}
