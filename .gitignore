@@ -56,7 +56,7 @@ config.ini
 # Archivos grandes de datos (opcional, según necesites subirlos o no)
 # datos/raw/*.csv
 # datos/procesados/*.csv
-
+fiat_depreciacion.zip
 # Pentaho
 *.log
 *.xml.backup
