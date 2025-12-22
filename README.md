@@ -3,6 +3,20 @@
 
 **Repositorio GitHub:** https://github.com/JBLOZ/fiat_depreciacion
 
+
+### Estructura del Proyecto
+
+```text
+fiat_depreciacion/
+├── datos/              # Raw (brutos) y Procesados (limpios + JSON-LD)
+├── docs/               # Memoria, enunciado, imágenes y presentación
+├── notebooks/          # Jupyter Notebooks (Visualizaciones y Schema.org)
+├── pentajo/            # Transformaciones ETL (.ktr)
+├── scripts/            # Automatización Python (Descarga, inicialización de dimensiones, exportación)
+├── sql/                # Backups y scripts de base de datos
+└── docker-compose.yml  # Entorno MySQL
+```
+
 **Asignatura:** Adquisición y Preparación de Datos  
 **Grado:** Ingeniería en Inteligencia Artificial  
 **Universidad de Alicante - Escuela Politécnica Superior**
@@ -20,7 +34,6 @@
 5. [Transformación según schema.org](#5-transformación-según-schemaorg)
 6. [Visualización](#6-visualización)
 7. [Conclusiones y resultados](#7-conclusiones-y-resultados)
-8. [Repositorio y guía de uso](#8-repositorio-y-guía-de-uso)
 
 ---
 
@@ -886,17 +899,3 @@ Este proyecto demuestra que **los datos cuentan historias que las narrativas ofi
 
 ---
 
-## 8. REPOSITORIO
-
-### 8.1 Estructura del Proyecto
-
-```text
-fiat_depreciacion/
-├── datos/              # Raw (brutos) y Procesados (limpios + JSON-LD)
-├── docs/               # Memoria, enunciado e imágenes
-├── notebooks/          # Jupyter Notebooks (Visualizaciones y Schema.org)
-├── pentajo/            # Transformaciones ETL (.ktr)
-├── scripts/            # Automatización Python (Descarga, DB, Export)
-├── sql/                # Backups y scripts de base de datos
-└── docker-compose.yml  # Entorno MySQL
-```
