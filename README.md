@@ -899,3 +899,16 @@ Este proyecto demuestra que **los datos cuentan historias que las narrativas ofi
 
 ---
 
+## 8. REFERENCIAS
+
+### Fuentes de datos oficiales
+
+| Fuente | Descripción | URL |
+|--------|-------------|-----|
+| **INE** | Instituto Nacional de Estadística - Datos de IPC, Salarios, Empleo y Desempleo de España | [https://www.ine.es](https://www.ine.es) |
+| **Yahoo Finance** | Datos históricos de mercados financieros (IBEX-35, Oro, EUR/USD) | [https://finance.yahoo.com](https://finance.yahoo.com) |
+
+
+
+---
+
